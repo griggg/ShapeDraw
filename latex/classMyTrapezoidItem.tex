@@ -1,0 +1,172 @@
+\doxysection{My\+Trapezoid\+Item Class Reference}
+\hypertarget{classMyTrapezoidItem}{}\label{classMyTrapezoidItem}\index{MyTrapezoidItem@{MyTrapezoidItem}}
+
+
+{\ttfamily \#include $<$shape.\+h$>$}
+
+
+
+Inheritance diagram for My\+Trapezoid\+Item\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classMyTrapezoidItem__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for My\+Trapezoid\+Item\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classMyTrapezoidItem__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{classMyTrapezoidItem_a205c89fa14c43087f4fd92b0acb0306b}{get\+Type}} ()
+\item 
+\mbox{\hyperlink{classMyTrapezoidItem_a01e5a6dfeb5d37c57929d113bf70f71e}{My\+Trapezoid\+Item}} (int posX, int posY, int \mbox{\hyperlink{classCustomShape_ab9b8044933d5f7b9f311f81bc07224b9}{size}}, QGraphics\+Item \texorpdfstring{$\ast$}{*}parent=nullptr)
+\item 
+void \mbox{\hyperlink{classMyTrapezoidItem_a1569e48f403eea02f8b71b5ae594fa18}{change\+Size}} (QRectF rect) override
+\item 
+QRectF \mbox{\hyperlink{classMyTrapezoidItem_adf84f4f777f521d28b6f5d0d51b839bd}{bounding\+Rect}} () const override
+\item 
+void \mbox{\hyperlink{classMyTrapezoidItem_a6cb72977d1a33afc7e420e38dcefc788}{paint}} (QPainter \texorpdfstring{$\ast$}{*}painter, const QStyle\+Option\+Graphics\+Item \texorpdfstring{$\ast$}{*}option, QWidget \texorpdfstring{$\ast$}{*}widget) override
+\item 
+\mbox{\hyperlink{classIShape}{IShape}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classMyTrapezoidItem_a3f3307ea95ac8a593d8074099a51c65a}{load\+From\+File}} (ifstream \&in\+File)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classCustomShape}{Custom\+Shape}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classCustomShape}{Custom\+Shape}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classCustomShape_a6bb3d634e14755c3f8e7642cf1b31cd2}{clone}} ()
+\item 
+void \mbox{\hyperlink{classCustomShape_ad921f167f1f8723efa42c71e416d9691}{change\+Color}} (QColor \mbox{\hyperlink{classCustomShape_ab94ab413164494ec8e4619e6e794db18}{color}}) override
+\item 
+void \mbox{\hyperlink{classCustomShape_a7053598ae32ff0179b2f8109c95cd280}{save\+To\+File}} (ofstream \&out\+File) override
+\item 
+\mbox{\hyperlink{classCustomShape_ae040b955f4a479aaf52bb0374122a824}{Custom\+Shape}} (int posX, int posY, int \mbox{\hyperlink{classCustomShape_ab9b8044933d5f7b9f311f81bc07224b9}{size}}, QGraphics\+Item \texorpdfstring{$\ast$}{*}parent=nullptr)
+\item 
+void \mbox{\hyperlink{classCustomShape_a0c3803f910fdd1b84ed9f337fbaebbf8}{remove\+From\+Scene}} () override
+\item 
+QRectF \mbox{\hyperlink{classCustomShape_a17edd8f8665bc7bfaa0ff18a020be0fe}{get\+Rect}} ()
+\item 
+QPointF \mbox{\hyperlink{classCustomShape_a4dfc43cdcca4014e72b3b830c63e59c8}{get\+Map\+From\+Scene}} (QPointF pos)
+\item 
+bool \mbox{\hyperlink{classCustomShape_afa6ba25413077a60b218768dbacf2dde}{is\+Contains}} (QPointF p) override
+\item 
+void \mbox{\hyperlink{classCustomShape_a4070291da011650be7f71a339314c908}{set\+New\+Pos}} (double \mbox{\hyperlink{classCustomShape_ae1d0aea11158b38c142cc0ac0a1813ef}{x}}, double \mbox{\hyperlink{classCustomShape_a0c76f6da4a2403c45befa0e253868c9d}{y}}) override
+\item 
+virtual void \mbox{\hyperlink{classCustomShape_a84509baeb04a4df90c8faf27515d6ee5}{show\+Selected}} () override
+\item 
+virtual void \mbox{\hyperlink{classCustomShape_a51e2b47afd4a84d3e9e847c696585a54}{show\+Un\+Selected}} (QColor \mbox{\hyperlink{classCustomShape_ab94ab413164494ec8e4619e6e794db18}{color}}) override
+\item 
+bool \mbox{\hyperlink{classCustomShape_a1e0b4452c3001a945d52282e5d2d5af0}{is\+Focused}} (QPointF scene\+Pos)
+\item 
+virtual bool \mbox{\hyperlink{classCustomShape_ac5f890badc016c5ec3bfeed08dbb87ec}{can\+Scale}} (double mlt, QGraphics\+View \texorpdfstring{$\ast$}{*}view)
+\item 
+void \mbox{\hyperlink{classCustomShape_a9440e7966b621dc32446c658886ed9ac}{scale}} (double mlt, QGraphics\+View \texorpdfstring{$\ast$}{*}view)
+\item 
+bool \mbox{\hyperlink{classCustomShape_a8169d65da6f7fa89474c37677d8bbe6b}{is\+Shape\+Rect\+In\+View}} (QGraphics\+View \texorpdfstring{$\ast$}{*}view)
+\item 
+bool \mbox{\hyperlink{classCustomShape_addc23fb964caf5f38ad276557bf29cc8}{can\+Move}} (double difX, double difY, QGraphics\+View \texorpdfstring{$\ast$}{*}view)
+\item 
+void \mbox{\hyperlink{classCustomShape_a2a2377999541fb8fc0075b2575658986}{move}} (double difX, double difY, QGraphics\+View \texorpdfstring{$\ast$}{*}view)
+\item 
+void \mbox{\hyperlink{classCustomShape_acd014562135cd96419b47d022eeac52d}{set\+Movable}} (bool val)
+\item 
+void \mbox{\hyperlink{classCustomShape_adb0a9e6a28447c417bf96630cf1f92a1}{draw\+On\+Scene}} (QGraphics\+Scene \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classCustomShape_a5c7473da0bb74f995d7a7fe1247eab27}{scene}})
+\item 
+bool \mbox{\hyperlink{classCustomShape_aa766988757e657dc91c5e1ad5d29ad3b}{ismovable}} ()
+\item 
+void \mbox{\hyperlink{classCustomShape_a1989c2ea0bc801496e836ffd0cb49a63}{move\+In\+View\+Back}} (QGraphics\+View \texorpdfstring{$\ast$}{*}view)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classIShape}{IShape}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classIShape_abecc7b52521ee60efa01d65a855dd652}{\texorpdfstring{$\sim$}{\string~}\+IShape}} ()
+\item 
+virtual void \mbox{\hyperlink{classIShape_a8343265ba910dace012d0625e4da302a}{save\+To\+File}} (std\+::ofstream \&)=0
+\item 
+virtual \mbox{\hyperlink{classIShape}{IShape}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classIShape_a6a7dc2bdf5e862c1bd749d51d079ec6d}{load\+From\+File}} (std\+::ifstream \&)=0
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classCustomShape}{Custom\+Shape}}}
+\begin{DoxyCompactItemize}
+\item 
+QGraphics\+Scene \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classCustomShape_a5c7473da0bb74f995d7a7fe1247eab27}{scene}}
+\item 
+QColor \mbox{\hyperlink{classCustomShape_ab94ab413164494ec8e4619e6e794db18}{color}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classIShape}{IShape}}}
+\begin{DoxyCompactItemize}
+\item 
+QColor \mbox{\hyperlink{classIShape_a4cf09c449379099b2889036a7760cb5a}{color}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classCustomShape}{Custom\+Shape}}}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classCustomShape_ab9b8044933d5f7b9f311f81bc07224b9}{size}}
+\item 
+int \mbox{\hyperlink{classCustomShape_ae1d0aea11158b38c142cc0ac0a1813ef}{x}}
+\item 
+int \mbox{\hyperlink{classCustomShape_a0c76f6da4a2403c45befa0e253868c9d}{y}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classMyTrapezoidItem_a01e5a6dfeb5d37c57929d113bf70f71e}\label{classMyTrapezoidItem_a01e5a6dfeb5d37c57929d113bf70f71e} 
+\index{MyTrapezoidItem@{MyTrapezoidItem}!MyTrapezoidItem@{MyTrapezoidItem}}
+\index{MyTrapezoidItem@{MyTrapezoidItem}!MyTrapezoidItem@{MyTrapezoidItem}}
+\doxysubsubsection{\texorpdfstring{MyTrapezoidItem()}{MyTrapezoidItem()}}
+{\footnotesize\ttfamily My\+Trapezoid\+Item\+::\+My\+Trapezoid\+Item (\begin{DoxyParamCaption}\item[{int}]{posX,  }\item[{int}]{posY,  }\item[{int}]{size,  }\item[{QGraphics\+Item \texorpdfstring{$\ast$}{*}}]{parent = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classMyTrapezoidItem_adf84f4f777f521d28b6f5d0d51b839bd}\label{classMyTrapezoidItem_adf84f4f777f521d28b6f5d0d51b839bd} 
+\index{MyTrapezoidItem@{MyTrapezoidItem}!boundingRect@{boundingRect}}
+\index{boundingRect@{boundingRect}!MyTrapezoidItem@{MyTrapezoidItem}}
+\doxysubsubsection{\texorpdfstring{boundingRect()}{boundingRect()}}
+{\footnotesize\ttfamily QRectF My\+Trapezoid\+Item\+::bounding\+Rect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+\Hypertarget{classMyTrapezoidItem_a1569e48f403eea02f8b71b5ae594fa18}\label{classMyTrapezoidItem_a1569e48f403eea02f8b71b5ae594fa18} 
+\index{MyTrapezoidItem@{MyTrapezoidItem}!changeSize@{changeSize}}
+\index{changeSize@{changeSize}!MyTrapezoidItem@{MyTrapezoidItem}}
+\doxysubsubsection{\texorpdfstring{changeSize()}{changeSize()}}
+{\footnotesize\ttfamily void My\+Trapezoid\+Item\+::change\+Size (\begin{DoxyParamCaption}\item[{QRectF}]{rect }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classCustomShape_afbca4afb6cfdf2046ac33a71cfb96330}{Custom\+Shape}}.
+
+\Hypertarget{classMyTrapezoidItem_a205c89fa14c43087f4fd92b0acb0306b}\label{classMyTrapezoidItem_a205c89fa14c43087f4fd92b0acb0306b} 
+\index{MyTrapezoidItem@{MyTrapezoidItem}!getType@{getType}}
+\index{getType@{getType}!MyTrapezoidItem@{MyTrapezoidItem}}
+\doxysubsubsection{\texorpdfstring{getType()}{getType()}}
+{\footnotesize\ttfamily string My\+Trapezoid\+Item\+::get\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classCustomShape_ad94ac94c2dd55004eceb0b231972ea44}{Custom\+Shape}}.
+
+\Hypertarget{classMyTrapezoidItem_a3f3307ea95ac8a593d8074099a51c65a}\label{classMyTrapezoidItem_a3f3307ea95ac8a593d8074099a51c65a} 
+\index{MyTrapezoidItem@{MyTrapezoidItem}!loadFromFile@{loadFromFile}}
+\index{loadFromFile@{loadFromFile}!MyTrapezoidItem@{MyTrapezoidItem}}
+\doxysubsubsection{\texorpdfstring{loadFromFile()}{loadFromFile()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classIShape}{IShape}} \texorpdfstring{$\ast$}{*} My\+Trapezoid\+Item\+::load\+From\+File (\begin{DoxyParamCaption}\item[{ifstream \&}]{in\+File }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classMyTrapezoidItem_a6cb72977d1a33afc7e420e38dcefc788}\label{classMyTrapezoidItem_a6cb72977d1a33afc7e420e38dcefc788} 
+\index{MyTrapezoidItem@{MyTrapezoidItem}!paint@{paint}}
+\index{paint@{paint}!MyTrapezoidItem@{MyTrapezoidItem}}
+\doxysubsubsection{\texorpdfstring{paint()}{paint()}}
+{\footnotesize\ttfamily void My\+Trapezoid\+Item\+::paint (\begin{DoxyParamCaption}\item[{QPainter \texorpdfstring{$\ast$}{*}}]{painter,  }\item[{const QStyle\+Option\+Graphics\+Item \texorpdfstring{$\ast$}{*}}]{option,  }\item[{QWidget \texorpdfstring{$\ast$}{*}}]{widget }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{shape_8h}{shape.\+h}}\end{DoxyCompactItemize}

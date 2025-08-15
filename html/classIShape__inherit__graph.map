@@ -1,0 +1,17 @@
+<map id="IShape" name="IShape">
+<area shape="rect" id="Node000001" title=" " alt="" coords="417,5,564,271"/>
+<area shape="rect" id="Node000002" href="$classCustomShape.html" title=" " alt="" coords="314,349,475,694"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="457,285,440,349,435,348,452,283"/>
+<area shape="rect" id="Node000008" href="$classGroupComposite.html" title=" " alt="" coords="500,319,676,724"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="530,283,539,318,534,319,525,285"/>
+<area shape="rect" id="Node000003" href="$classMyCircleItem.html" title=" " alt="" coords="5,802,133,947"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="305,610,227,688,147,774,123,804,119,800,143,770,223,684,302,606"/>
+<area shape="rect" id="Node000004" href="$classMyLineItem.html" title=" " alt="" coords="157,772,304,977"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="311,708,280,773,276,771,306,706"/>
+<area shape="rect" id="Node000005" href="$classMySquareItem.html" title=" " alt="" coords="328,802,461,947"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="397,708,397,802,392,802,392,708"/>
+<area shape="rect" id="Node000006" href="$classMyTrapezoidItem.html" title=" " alt="" coords="486,792,637,957"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="482,705,490,723,523,791,518,793,486,725,477,708"/>
+<area shape="rect" id="Node000007" href="$classMyTriangleItem.html" title=" " alt="" coords="661,802,801,947"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="471,703,490,722,510,736,529,744,567,748,606,751,628,757,651,770,685,800,681,804,648,774,626,762,605,756,566,753,528,749,507,741,486,726,467,706"/>
+</map>

@@ -1,0 +1,84 @@
+\doxysection{ICommand Class Reference}
+\hypertarget{classICommand}{}\label{classICommand}\index{ICommand@{ICommand}}
+
+
+{\ttfamily \#include $<$ICommand.\+h$>$}
+
+
+
+Inheritance diagram for ICommand\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=328pt]{classICommand__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for ICommand\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=171pt]{classICommand__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classICommand_a68323b8402f96629a3f57c10b0a23b98}{execute}} (\mbox{\hyperlink{classIShape}{IShape}} \texorpdfstring{$\ast$}{*}shape, QGraphics\+View \texorpdfstring{$\ast$}{*}view)=0
+\item 
+virtual void \mbox{\hyperlink{classICommand_a45b982fb1303bdfc39c618fa1c4590d3}{unexecute}} ()=0
+\item 
+virtual \mbox{\hyperlink{classICommand}{ICommand}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classICommand_abfdc602cf26a5f4b24c7017341465112}{clone}} ()=0
+\item 
+virtual \mbox{\hyperlink{classICommand_a0e0226af93b945e84b58405e9d5343b1}{\texorpdfstring{$\sim$}{\string~}\+ICommand}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classICommand_a0e0226af93b945e84b58405e9d5343b1}\label{classICommand_a0e0226af93b945e84b58405e9d5343b1} 
+\index{ICommand@{ICommand}!````~ICommand@{\texorpdfstring{$\sim$}{\string~}ICommand}}
+\index{````~ICommand@{\texorpdfstring{$\sim$}{\string~}ICommand}!ICommand@{ICommand}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}ICommand()}{\string~ICommand()}}
+{\footnotesize\ttfamily virtual ICommand\+::\texorpdfstring{$\sim$}{\string~}\+ICommand (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classICommand_abfdc602cf26a5f4b24c7017341465112}\label{classICommand_abfdc602cf26a5f4b24c7017341465112} 
+\index{ICommand@{ICommand}!clone@{clone}}
+\index{clone@{clone}!ICommand@{ICommand}}
+\doxysubsubsection{\texorpdfstring{clone()}{clone()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classICommand}{ICommand}} \texorpdfstring{$\ast$}{*} ICommand\+::clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classMoveCommand_a22f6f124f4fb57a500e9150ac4663e7f}{Move\+Command}}, and \mbox{\hyperlink{classScaleCommand_a054b78a322f2f6354c27ea3668082397}{Scale\+Command}}.
+
+\Hypertarget{classICommand_a68323b8402f96629a3f57c10b0a23b98}\label{classICommand_a68323b8402f96629a3f57c10b0a23b98} 
+\index{ICommand@{ICommand}!execute@{execute}}
+\index{execute@{execute}!ICommand@{ICommand}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily virtual void ICommand\+::execute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classIShape}{IShape}} \texorpdfstring{$\ast$}{*}}]{shape,  }\item[{QGraphics\+View \texorpdfstring{$\ast$}{*}}]{view }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classMoveCommand_ade303514f46966bf14b51aab2b389581}{Move\+Command}}, and \mbox{\hyperlink{classScaleCommand_a8df7af3365a835f7b6ca063f045da3b1}{Scale\+Command}}.
+
+\Hypertarget{classICommand_a45b982fb1303bdfc39c618fa1c4590d3}\label{classICommand_a45b982fb1303bdfc39c618fa1c4590d3} 
+\index{ICommand@{ICommand}!unexecute@{unexecute}}
+\index{unexecute@{unexecute}!ICommand@{ICommand}}
+\doxysubsubsection{\texorpdfstring{unexecute()}{unexecute()}}
+{\footnotesize\ttfamily virtual void ICommand\+::unexecute (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classMoveCommand_aab6dbedb0bec07fcc5e02ed56f98fa9c}{Move\+Command}}, and \mbox{\hyperlink{classScaleCommand_ad34292db47ec8ab43cbaed7b1cef9260}{Scale\+Command}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{ICommand_8h}{ICommand.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,190 @@
+\doxysection{storage.\+h}
+\hypertarget{storage_8h_source}{}\label{storage_8h_source}\mbox{\hyperlink{storage_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ STORAGE\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ STORAGE\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{shape_8h}{shape.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <QGraphicsScene>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <QVector>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classMyStorage}{MyStorage}}\ \{}
+\DoxyCodeLine{00011\ \textcolor{keyword}{private}:\ QVector\ <\ IShape\ *\ >\ items;}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{public}:\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{classMyStorage_af08310e4b5a5f5b2f271eaf2cd8355b3}{filename}};\ \textcolor{comment}{//"{}C:\(\backslash\)\(\backslash\)Users\(\backslash\)\(\backslash\)pvars\(\backslash\)\(\backslash\)Desktop\(\backslash\)\(\backslash\)data2.txt"{};}}
+\DoxyCodeLine{00014\ \ \ \ \ QGraphicsScene\ *\ \mbox{\hyperlink{classMyStorage_acdfe4cbb431cea8bb14ec1baab0d1e35}{scene}};}
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{classIShapeCreator}{IShapeCreator}}\ *\ \mbox{\hyperlink{classMyStorage_a1bdf5a86d763842ad431e43e4c199bb3}{shapeCreator}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{comment}{//\ Конструктор}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMyStorage_ab4972593faf43664fcc7a06b352a134f}{setShapeCreator}}(\mbox{\hyperlink{classIShapeCreator}{IShapeCreator}}\ *\ \mbox{\hyperlink{classMyStorage_a1bdf5a86d763842ad431e43e4c199bb3}{shapeCreator}})\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keyword}{this}\ -\/>\ \mbox{\hyperlink{classMyStorage_a1bdf5a86d763842ad431e43e4c199bb3}{shapeCreator}}\ =\ \mbox{\hyperlink{classMyStorage_a1bdf5a86d763842ad431e43e4c199bb3}{shapeCreator}};}
+\DoxyCodeLine{00020\ \ \ \ \ \}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{comment}{//\ Деструктор}}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{classMyStorage_a72c50c07078ec63bcd618a6f0e0b257a}{\string~MyStorage}}()\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMyStorage_a1bd67b538ac094e334b88f858af33cd9}{clearAll}}();}
+\DoxyCodeLine{00025\ \ \ \ \ \}}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMyStorage_aa398d14b6862dac30fff5d08c9e556e8}{unGroupSelected}}()\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ QVector\ <\ IShape\ *\ >\ temp;}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ it\ =\ items.begin();\ it\ !=\ items.end();)\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((\ *\ it)\ -\/>\ ismovable()\ \&\&}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{dynamic\_cast\ <}\ \mbox{\hyperlink{classGroupComposite}{GroupComposite}}\ *\ \textcolor{keyword}{>}\ (\ *\ it)\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ QVector\ <\ IShape\ *\ >\ groupShapes\ =}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{dynamic\_cast\ <}\ \mbox{\hyperlink{classGroupComposite}{GroupComposite}}\ *\ \textcolor{keyword}{>}\ (\ *\ it)\ -\/>\ getShapesToUngroup();}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ не\ удаляем\ it,\ тк\ не\ хотим\ удалить\ фигуры}}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ i:\ groupShapes)\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ temp.append(i);}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *\ it\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ it\ =\ items.erase(it);}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ++it;}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{classIShape}{IShape}}\ *\ i:\ temp)\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{this}\ -\/>\ \mbox{\hyperlink{classMyStorage_ae05f4c0ce98dbe0a9edb6aaee51b9ab1}{addItem}}(i);}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00046\ \ \ \ \ \}}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMyStorage_afdbf7c95ba9be1c7cf44857be5866bed}{createGroupFromSelected}}()\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ QVector\ <\ IShape\ *\ >\ temp;}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ it\ =\ items.begin();\ it\ !=\ items.end();)\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((\ *\ it)\ -\/>\ ismovable())\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ temp.append(\ *\ it);}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ it\ =\ items.erase(it);}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ++it;}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classIShape}{IShape}}\ *\ newGroup\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classGroupComposite}{GroupComposite}}(temp,\ \mbox{\hyperlink{classMyStorage_acdfe4cbb431cea8bb14ec1baab0d1e35}{scene}});}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keyword}{this}\ -\/>\ \mbox{\hyperlink{classMyStorage_ae05f4c0ce98dbe0a9edb6aaee51b9ab1}{addItem}}(newGroup);}
+\DoxyCodeLine{00059\ \ \ \ \ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMyStorage_aeae7565e822c86850db2a6b277e57843}{setScene}}(QGraphicsScene\ *\ \mbox{\hyperlink{classMyStorage_acdfe4cbb431cea8bb14ec1baab0d1e35}{scene}})\ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keyword}{this}\ -\/>\ \mbox{\hyperlink{classMyStorage_acdfe4cbb431cea8bb14ec1baab0d1e35}{scene}}\ =\ \mbox{\hyperlink{classMyStorage_acdfe4cbb431cea8bb14ec1baab0d1e35}{scene}};}
+\DoxyCodeLine{00063\ \ \ \ \ \}}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classIShape}{IShape}}\ *\ \mbox{\hyperlink{classMyStorage_af06345e053ec3966ed24271b40e33723}{createShape}}(\textcolor{keywordtype}{string}\ type,\ ifstream\ \&\ inFile)\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00066\ \ \ \ \ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMyStorage_a3f312dd35727c8f2e8e65140534c48e7}{setCreatorShape}}(\mbox{\hyperlink{classIShapeCreator}{IShapeCreator}}\ *\ \mbox{\hyperlink{classMyStorage_a1bdf5a86d763842ad431e43e4c199bb3}{shapeCreator}})\ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keyword}{this}\ -\/>\ \mbox{\hyperlink{classMyStorage_a1bdf5a86d763842ad431e43e4c199bb3}{shapeCreator}}\ =\ \mbox{\hyperlink{classMyStorage_a1bdf5a86d763842ad431e43e4c199bb3}{shapeCreator}};}
+\DoxyCodeLine{00070\ \ \ \ \ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMyStorage_a4e23a6607a20734f662691f08e49ca0d}{load}}()\ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keyword}{this}\ -\/>\ \mbox{\hyperlink{classMyStorage_a1bd67b538ac094e334b88f858af33cd9}{clearAll}}();}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ if\ (shapeCreator\ ==\ nullptr)\ throw\ runtime\_error("{}error:\ shapecreator\ =\ nullptr"{});}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ std::ifstream\ inFile(\mbox{\hyperlink{classMyStorage_af08310e4b5a5f5b2f271eaf2cd8355b3}{filename}});}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ s;}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (inFile\ >>\ s)\ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classIShape}{IShape}}\ *\ newItem;}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classIShapeCreator}{IShapeCreator}}\ *\ \mbox{\hyperlink{classMyStorage_a1bdf5a86d763842ad431e43e4c199bb3}{shapeCreator}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classShapeCreator}{ShapeCreator}}(inFile,\ \mbox{\hyperlink{classMyStorage_acdfe4cbb431cea8bb14ec1baab0d1e35}{scene}});}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMyStorage_a1bdf5a86d763842ad431e43e4c199bb3}{shapeCreator}}\ -\/>\ setType(s);}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ newItem\ =\ \mbox{\hyperlink{classMyStorage_a1bdf5a86d763842ad431e43e4c199bb3}{shapeCreator}}\ -\/>\ \mbox{\hyperlink{classMyStorage_af06345e053ec3966ed24271b40e33723}{createShape}}();}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (newItem\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ items.append(newItem);}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ runtime\_error(\textcolor{stringliteral}{"{}MyStorage::load()\ newItem\ =\ nullptr"{}});}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shape_8h_a4ca0422009bb1796bcb704e018d9c8f6}{debug}}(\textcolor{stringliteral}{"{}ASD"{}});}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ inFile.close();}
+\DoxyCodeLine{00095\ \ \ \ \ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMyStorage_af1d2fecbbfa1d64297a12d169c252f37}{save}}()\ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ ofstream\ outFile(\mbox{\hyperlink{classMyStorage_af08310e4b5a5f5b2f271eaf2cd8355b3}{filename}});}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{classIShape}{IShape}}\ *\ shape:\ items)\ \{}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ shape\ -\/>\ saveToFile(outFile);}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ outFile.close();}
+\DoxyCodeLine{00104\ \ \ \ \ \}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{comment}{//\ Удаление\ всех\ элементов}}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMyStorage_a1bd67b538ac094e334b88f858af33cd9}{clearAll}}()\ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{classIShape}{IShape}}\ *\ item:\ items)\ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (item)\ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ item;\ \textcolor{comment}{//\ освобождаем\ память}}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ items.clear();}
+\DoxyCodeLine{00114\ \ \ \ \ \}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{comment}{//\ Удаление\ только\ выбранных}}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMyStorage_a9b05834a0e48b625c8a7f57db0026adb}{clearSelected}}()\ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ it\ =\ items.begin();\ it\ !=\ items.end();)\ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ *\ it\ \&\&\ (\ *\ it)\ -\/>\ ismovable())\ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classMyStorage_acdfe4cbb431cea8bb14ec1baab0d1e35}{scene}})\ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\ *\ it)\ -\/>\ removeFromScene();\ \textcolor{comment}{//\ Удаляем\ со\ сцены}}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ *\ it;\ \textcolor{comment}{//\ Освобождаем\ память}}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ it\ =\ items.erase(it);\ \textcolor{comment}{//\ Удаляем\ элемент\ из\ вектора\ и\ получаем}}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ итератор\ на\ следующий}}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ++it;\ \textcolor{comment}{//\ Переходим\ к\ следующему\ элементу}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00130\ \ \ \ \ \}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{comment}{//\ Добавить\ элемент\ в\ общий\ список\ элементов}}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMyStorage_ae05f4c0ce98dbe0a9edb6aaee51b9ab1}{addItem}}(\mbox{\hyperlink{classIShape}{IShape}}\ *\ item)\ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ items.append(item);}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ save();}}
+\DoxyCodeLine{00136\ \ \ \ \ \}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{comment}{//\ Снять\ выделение\ со\ всех\ элементов}}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMyStorage_a0243104d237f7bb2e13fbc7704df9aac}{unselectAll}}()\ \{}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shape_8h_a4ca0422009bb1796bcb704e018d9c8f6}{debug}}(\textcolor{stringliteral}{"{}unselectAll"{}});}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{classIShape}{IShape}}\ *\ item:\ items)\ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (item\ ==\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shape_8h_a4ca0422009bb1796bcb704e018d9c8f6}{debug}}(\textcolor{stringliteral}{"{}item\ =\ nullptr"{}});}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{dynamic\_cast\ <}\ \mbox{\hyperlink{classGroupComposite}{GroupComposite}}\ *\ \textcolor{keyword}{>}\ (item))\ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shape_8h_a4ca0422009bb1796bcb704e018d9c8f6}{debug}}(\textcolor{stringliteral}{"{}it`s\ group"{}});}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shape_8h_a4ca0422009bb1796bcb704e018d9c8f6}{debug}}(\textcolor{stringliteral}{"{}it`s\ shape"{}});}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shape_8h_a4ca0422009bb1796bcb704e018d9c8f6}{debug}}(\textcolor{stringliteral}{"{}unselectAll\ item-\/>setmovable\ 2"{}});}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ item\ -\/>\ setMovable(\textcolor{keyword}{false});}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shape_8h_a4ca0422009bb1796bcb704e018d9c8f6}{debug}}(\textcolor{stringliteral}{"{}unselectAll\ 22222"{}});}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ item\ -\/>\ showUnSelected(item\ -\/>\ color);}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shape_8h_a4ca0422009bb1796bcb704e018d9c8f6}{debug}}(\textcolor{stringliteral}{"{}unselectAll\ showUnSelected"{}});}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{shape_8h_a4ca0422009bb1796bcb704e018d9c8f6}{debug}}(\textcolor{stringliteral}{"{}unselectAll3"{}});}
+\DoxyCodeLine{00158\ \ \ \ \ \}}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{comment}{//\ Получить\ элемент\ по\ индексу}}
+\DoxyCodeLine{00161\ \ \ \ \ \mbox{\hyperlink{classIShape}{IShape}}\ *\ \mbox{\hyperlink{classMyStorage_ab993c6d0d8a4d2cbafaab2fc5e50d3bc}{getItem}}(\textcolor{keywordtype}{int}\ index)\ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ >=\ 0\ \&\&\ index\ <\ items.size())\ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ items[index];}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00166\ \ \ \ \ \}}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{comment}{//\ Получить\ количество\ элементов}}
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classMyStorage_abdff7e7640534560db2b3f681fea42b7}{count}}()\ \{}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ items.size();}
+\DoxyCodeLine{00171\ \ \ \ \ \}}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{comment}{//\ Получить\ выбранные\ элементы}}
+\DoxyCodeLine{00174\ \ \ \ \ QVector\ <\ IShape\ *\ >\ \mbox{\hyperlink{classMyStorage_a5cb82800edd263963cd0a7f92473357e}{getSelectedItems}}()\ \{}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ QVector\ <\ IShape\ *\ >\ selectedItems;}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ i:\ items)\ \{}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ \&\&\ i\ -\/>\ ismovable())\ \{}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ selectedItems.append(i);}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ selectedItems;}
+\DoxyCodeLine{00182\ \ \ \ \ \}}
+\DoxyCodeLine{00183\ \};}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ STORAGE\_H}}
+
+\end{DoxyCode}

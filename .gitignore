@@ -1,0 +1,7 @@
+!CMakeList.txt
+*.txt
+build/*
+
+!*.h
+!*.cpp
+

@@ -1,0 +1,188 @@
+\doxysection{My\+Storage Class Reference}
+\hypertarget{classMyStorage}{}\label{classMyStorage}\index{MyStorage@{MyStorage}}
+
+
+{\ttfamily \#include $<$storage.\+h$>$}
+
+
+
+Collaboration diagram for My\+Storage\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=236pt]{classMyStorage__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classMyStorage_ab4972593faf43664fcc7a06b352a134f}{set\+Shape\+Creator}} (\mbox{\hyperlink{classIShapeCreator}{IShape\+Creator}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classMyStorage_a1bdf5a86d763842ad431e43e4c199bb3}{shape\+Creator}})
+\item 
+\mbox{\hyperlink{classMyStorage_a72c50c07078ec63bcd618a6f0e0b257a}{\texorpdfstring{$\sim$}{\string~}\+My\+Storage}} ()
+\item 
+void \mbox{\hyperlink{classMyStorage_aa398d14b6862dac30fff5d08c9e556e8}{un\+Group\+Selected}} ()
+\item 
+void \mbox{\hyperlink{classMyStorage_afdbf7c95ba9be1c7cf44857be5866bed}{create\+Group\+From\+Selected}} ()
+\item 
+void \mbox{\hyperlink{classMyStorage_aeae7565e822c86850db2a6b277e57843}{set\+Scene}} (QGraphics\+Scene \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classMyStorage_acdfe4cbb431cea8bb14ec1baab0d1e35}{scene}})
+\item 
+virtual \mbox{\hyperlink{classIShape}{IShape}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classMyStorage_af06345e053ec3966ed24271b40e33723}{create\+Shape}} (string type, ifstream \&in\+File)
+\item 
+void \mbox{\hyperlink{classMyStorage_a3f312dd35727c8f2e8e65140534c48e7}{set\+Creator\+Shape}} (\mbox{\hyperlink{classIShapeCreator}{IShape\+Creator}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classMyStorage_a1bdf5a86d763842ad431e43e4c199bb3}{shape\+Creator}})
+\item 
+void \mbox{\hyperlink{classMyStorage_a4e23a6607a20734f662691f08e49ca0d}{load}} ()
+\item 
+void \mbox{\hyperlink{classMyStorage_af1d2fecbbfa1d64297a12d169c252f37}{save}} ()
+\item 
+void \mbox{\hyperlink{classMyStorage_a1bd67b538ac094e334b88f858af33cd9}{clear\+All}} ()
+\item 
+void \mbox{\hyperlink{classMyStorage_a9b05834a0e48b625c8a7f57db0026adb}{clear\+Selected}} ()
+\item 
+void \mbox{\hyperlink{classMyStorage_ae05f4c0ce98dbe0a9edb6aaee51b9ab1}{add\+Item}} (\mbox{\hyperlink{classIShape}{IShape}} \texorpdfstring{$\ast$}{*}item)
+\item 
+void \mbox{\hyperlink{classMyStorage_a0243104d237f7bb2e13fbc7704df9aac}{unselect\+All}} ()
+\item 
+\mbox{\hyperlink{classIShape}{IShape}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classMyStorage_ab993c6d0d8a4d2cbafaab2fc5e50d3bc}{get\+Item}} (int index)
+\item 
+int \mbox{\hyperlink{classMyStorage_abdff7e7640534560db2b3f681fea42b7}{count}} ()
+\item 
+QVector$<$ \mbox{\hyperlink{classIShape}{IShape}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classMyStorage_a5cb82800edd263963cd0a7f92473357e}{get\+Selected\+Items}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{classMyStorage_af08310e4b5a5f5b2f271eaf2cd8355b3}{filename}}
+\item 
+QGraphics\+Scene \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classMyStorage_acdfe4cbb431cea8bb14ec1baab0d1e35}{scene}}
+\item 
+\mbox{\hyperlink{classIShapeCreator}{IShape\+Creator}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classMyStorage_a1bdf5a86d763842ad431e43e4c199bb3}{shape\+Creator}} = nullptr
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classMyStorage_a72c50c07078ec63bcd618a6f0e0b257a}\label{classMyStorage_a72c50c07078ec63bcd618a6f0e0b257a} 
+\index{MyStorage@{MyStorage}!````~MyStorage@{\texorpdfstring{$\sim$}{\string~}MyStorage}}
+\index{````~MyStorage@{\texorpdfstring{$\sim$}{\string~}MyStorage}!MyStorage@{MyStorage}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}MyStorage()}{\string~MyStorage()}}
+{\footnotesize\ttfamily My\+Storage\+::\texorpdfstring{$\sim$}{\string~}\+My\+Storage (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classMyStorage_ae05f4c0ce98dbe0a9edb6aaee51b9ab1}\label{classMyStorage_ae05f4c0ce98dbe0a9edb6aaee51b9ab1} 
+\index{MyStorage@{MyStorage}!addItem@{addItem}}
+\index{addItem@{addItem}!MyStorage@{MyStorage}}
+\doxysubsubsection{\texorpdfstring{addItem()}{addItem()}}
+{\footnotesize\ttfamily void My\+Storage\+::add\+Item (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classIShape}{IShape}} \texorpdfstring{$\ast$}{*}}]{item }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classMyStorage_a1bd67b538ac094e334b88f858af33cd9}\label{classMyStorage_a1bd67b538ac094e334b88f858af33cd9} 
+\index{MyStorage@{MyStorage}!clearAll@{clearAll}}
+\index{clearAll@{clearAll}!MyStorage@{MyStorage}}
+\doxysubsubsection{\texorpdfstring{clearAll()}{clearAll()}}
+{\footnotesize\ttfamily void My\+Storage\+::clear\+All (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classMyStorage_a9b05834a0e48b625c8a7f57db0026adb}\label{classMyStorage_a9b05834a0e48b625c8a7f57db0026adb} 
+\index{MyStorage@{MyStorage}!clearSelected@{clearSelected}}
+\index{clearSelected@{clearSelected}!MyStorage@{MyStorage}}
+\doxysubsubsection{\texorpdfstring{clearSelected()}{clearSelected()}}
+{\footnotesize\ttfamily void My\+Storage\+::clear\+Selected (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classMyStorage_abdff7e7640534560db2b3f681fea42b7}\label{classMyStorage_abdff7e7640534560db2b3f681fea42b7} 
+\index{MyStorage@{MyStorage}!count@{count}}
+\index{count@{count}!MyStorage@{MyStorage}}
+\doxysubsubsection{\texorpdfstring{count()}{count()}}
+{\footnotesize\ttfamily int My\+Storage\+::count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classMyStorage_afdbf7c95ba9be1c7cf44857be5866bed}\label{classMyStorage_afdbf7c95ba9be1c7cf44857be5866bed} 
+\index{MyStorage@{MyStorage}!createGroupFromSelected@{createGroupFromSelected}}
+\index{createGroupFromSelected@{createGroupFromSelected}!MyStorage@{MyStorage}}
+\doxysubsubsection{\texorpdfstring{createGroupFromSelected()}{createGroupFromSelected()}}
+{\footnotesize\ttfamily void My\+Storage\+::create\+Group\+From\+Selected (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classMyStorage_af06345e053ec3966ed24271b40e33723}\label{classMyStorage_af06345e053ec3966ed24271b40e33723} 
+\index{MyStorage@{MyStorage}!createShape@{createShape}}
+\index{createShape@{createShape}!MyStorage@{MyStorage}}
+\doxysubsubsection{\texorpdfstring{createShape()}{createShape()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classIShape}{IShape}} \texorpdfstring{$\ast$}{*} My\+Storage\+::create\+Shape (\begin{DoxyParamCaption}\item[{string}]{type,  }\item[{ifstream \&}]{in\+File }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\Hypertarget{classMyStorage_ab993c6d0d8a4d2cbafaab2fc5e50d3bc}\label{classMyStorage_ab993c6d0d8a4d2cbafaab2fc5e50d3bc} 
+\index{MyStorage@{MyStorage}!getItem@{getItem}}
+\index{getItem@{getItem}!MyStorage@{MyStorage}}
+\doxysubsubsection{\texorpdfstring{getItem()}{getItem()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classIShape}{IShape}} \texorpdfstring{$\ast$}{*} My\+Storage\+::get\+Item (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classMyStorage_a5cb82800edd263963cd0a7f92473357e}\label{classMyStorage_a5cb82800edd263963cd0a7f92473357e} 
+\index{MyStorage@{MyStorage}!getSelectedItems@{getSelectedItems}}
+\index{getSelectedItems@{getSelectedItems}!MyStorage@{MyStorage}}
+\doxysubsubsection{\texorpdfstring{getSelectedItems()}{getSelectedItems()}}
+{\footnotesize\ttfamily QVector$<$ \mbox{\hyperlink{classIShape}{IShape}} \texorpdfstring{$\ast$}{*} $>$ My\+Storage\+::get\+Selected\+Items (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classMyStorage_a4e23a6607a20734f662691f08e49ca0d}\label{classMyStorage_a4e23a6607a20734f662691f08e49ca0d} 
+\index{MyStorage@{MyStorage}!load@{load}}
+\index{load@{load}!MyStorage@{MyStorage}}
+\doxysubsubsection{\texorpdfstring{load()}{load()}}
+{\footnotesize\ttfamily void My\+Storage\+::load (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classMyStorage_af1d2fecbbfa1d64297a12d169c252f37}\label{classMyStorage_af1d2fecbbfa1d64297a12d169c252f37} 
+\index{MyStorage@{MyStorage}!save@{save}}
+\index{save@{save}!MyStorage@{MyStorage}}
+\doxysubsubsection{\texorpdfstring{save()}{save()}}
+{\footnotesize\ttfamily void My\+Storage\+::save (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classMyStorage_a3f312dd35727c8f2e8e65140534c48e7}\label{classMyStorage_a3f312dd35727c8f2e8e65140534c48e7} 
+\index{MyStorage@{MyStorage}!setCreatorShape@{setCreatorShape}}
+\index{setCreatorShape@{setCreatorShape}!MyStorage@{MyStorage}}
+\doxysubsubsection{\texorpdfstring{setCreatorShape()}{setCreatorShape()}}
+{\footnotesize\ttfamily void My\+Storage\+::set\+Creator\+Shape (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classIShapeCreator}{IShape\+Creator}} \texorpdfstring{$\ast$}{*}}]{shape\+Creator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classMyStorage_aeae7565e822c86850db2a6b277e57843}\label{classMyStorage_aeae7565e822c86850db2a6b277e57843} 
+\index{MyStorage@{MyStorage}!setScene@{setScene}}
+\index{setScene@{setScene}!MyStorage@{MyStorage}}
+\doxysubsubsection{\texorpdfstring{setScene()}{setScene()}}
+{\footnotesize\ttfamily void My\+Storage\+::set\+Scene (\begin{DoxyParamCaption}\item[{QGraphics\+Scene \texorpdfstring{$\ast$}{*}}]{scene }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classMyStorage_ab4972593faf43664fcc7a06b352a134f}\label{classMyStorage_ab4972593faf43664fcc7a06b352a134f} 
+\index{MyStorage@{MyStorage}!setShapeCreator@{setShapeCreator}}
+\index{setShapeCreator@{setShapeCreator}!MyStorage@{MyStorage}}
+\doxysubsubsection{\texorpdfstring{setShapeCreator()}{setShapeCreator()}}
+{\footnotesize\ttfamily void My\+Storage\+::set\+Shape\+Creator (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classIShapeCreator}{IShape\+Creator}} \texorpdfstring{$\ast$}{*}}]{shape\+Creator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classMyStorage_aa398d14b6862dac30fff5d08c9e556e8}\label{classMyStorage_aa398d14b6862dac30fff5d08c9e556e8} 
+\index{MyStorage@{MyStorage}!unGroupSelected@{unGroupSelected}}
+\index{unGroupSelected@{unGroupSelected}!MyStorage@{MyStorage}}
+\doxysubsubsection{\texorpdfstring{unGroupSelected()}{unGroupSelected()}}
+{\footnotesize\ttfamily void My\+Storage\+::un\+Group\+Selected (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classMyStorage_a0243104d237f7bb2e13fbc7704df9aac}\label{classMyStorage_a0243104d237f7bb2e13fbc7704df9aac} 
+\index{MyStorage@{MyStorage}!unselectAll@{unselectAll}}
+\index{unselectAll@{unselectAll}!MyStorage@{MyStorage}}
+\doxysubsubsection{\texorpdfstring{unselectAll()}{unselectAll()}}
+{\footnotesize\ttfamily void My\+Storage\+::unselect\+All (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classMyStorage_af08310e4b5a5f5b2f271eaf2cd8355b3}\label{classMyStorage_af08310e4b5a5f5b2f271eaf2cd8355b3} 
+\index{MyStorage@{MyStorage}!filename@{filename}}
+\index{filename@{filename}!MyStorage@{MyStorage}}
+\doxysubsubsection{\texorpdfstring{filename}{filename}}
+{\footnotesize\ttfamily string My\+Storage\+::filename}
+
+\Hypertarget{classMyStorage_acdfe4cbb431cea8bb14ec1baab0d1e35}\label{classMyStorage_acdfe4cbb431cea8bb14ec1baab0d1e35} 
+\index{MyStorage@{MyStorage}!scene@{scene}}
+\index{scene@{scene}!MyStorage@{MyStorage}}
+\doxysubsubsection{\texorpdfstring{scene}{scene}}
+{\footnotesize\ttfamily QGraphics\+Scene\texorpdfstring{$\ast$}{*} My\+Storage\+::scene}
+
+\Hypertarget{classMyStorage_a1bdf5a86d763842ad431e43e4c199bb3}\label{classMyStorage_a1bdf5a86d763842ad431e43e4c199bb3} 
+\index{MyStorage@{MyStorage}!shapeCreator@{shapeCreator}}
+\index{shapeCreator@{shapeCreator}!MyStorage@{MyStorage}}
+\doxysubsubsection{\texorpdfstring{shapeCreator}{shapeCreator}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classIShapeCreator}{IShape\+Creator}}\texorpdfstring{$\ast$}{*} My\+Storage\+::shape\+Creator = nullptr}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{storage_8h}{storage.\+h}}\end{DoxyCompactItemize}

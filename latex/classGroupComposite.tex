@@ -1,0 +1,379 @@
+\doxysection{Group\+Composite Class Reference}
+\hypertarget{classGroupComposite}{}\label{classGroupComposite}\index{GroupComposite@{GroupComposite}}
+
+
+{\ttfamily \#include $<$shape.\+h$>$}
+
+
+
+Inheritance diagram for Group\+Composite\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classGroupComposite__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Group\+Composite\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classGroupComposite__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classGroupComposite_a5023f7019ef4cfec09b16829ffb867d4}{\texorpdfstring{$\sim$}{\string~}\+Group\+Composite}} ()
+\item 
+void \mbox{\hyperlink{classGroupComposite_a9ac88a3d3175c7451e7fb9cd69bb0ff7}{change\+Color}} (QColor \mbox{\hyperlink{classGroupComposite_a241364693539b87bb00f0de654712d10}{color}})
+\item 
+QVector$<$ \mbox{\hyperlink{classIShape}{IShape}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classGroupComposite_a9ef3641b78c5b0372dfd4940d99a9e8b}{get\+Shapes\+To\+Ungroup}} ()
+\item 
+void \mbox{\hyperlink{classGroupComposite_a4020550d8881a28199b65efe33cc00eb}{set\+Shape\+Creator}} (\mbox{\hyperlink{classIShapeCreator}{IShape\+Creator}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classGroupComposite_a827d655e53c76dd3e2c008aa2b9406dc}{shape\+Creator}})
+\item 
+virtual \mbox{\hyperlink{classIShape}{IShape}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classGroupComposite_af6faf58f699f242b04b81169572f6f72}{load\+From\+File}} (ifstream \&in\+File)
+\item 
+\mbox{\hyperlink{classGroupComposite_a0829dfa83fd87182e366fb816bd84f84}{Group\+Composite}} (QVector$<$ \mbox{\hyperlink{classIShape}{IShape}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classGroupComposite_a136e8cff000cd0b6c9094ec5d9d15f58}{shapes}}, QGraphics\+Scene \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classGroupComposite_aef97b3fea7ba83de64f20b221a6f43cd}{scene}})
+\item 
+void \mbox{\hyperlink{classGroupComposite_acae060c35ead4cbb3b841430fa38c550}{save\+To\+File}} (ofstream \&out\+File)
+\item 
+void \mbox{\hyperlink{classGroupComposite_adb02b506ddaf38d61089cc15b2e88680}{remove\+From\+Scene}} ()
+\item 
+virtual void \mbox{\hyperlink{classGroupComposite_ad27eaaf8294f95ea6faf91d6b598726d}{change\+Size}} (QRectF rect) override
+\item 
+bool \mbox{\hyperlink{classGroupComposite_afe35f65c08c3e223b36bf5255db442da}{is\+Contains}} (QPointF p)
+\item 
+void \mbox{\hyperlink{classGroupComposite_ada7086bce03f82669b65b384149ce59f}{set\+New\+Pos}} (double \mbox{\hyperlink{classGroupComposite_a617783adcd50f07157bc66a851b56bd6}{x}}, double \mbox{\hyperlink{classGroupComposite_a77fbe737999f703f121cabcccc55a9ad}{y}})
+\item 
+virtual void \mbox{\hyperlink{classGroupComposite_aefb7228f94c7bba79c6adb0a301c1047}{show\+Selected}} ()
+\item 
+virtual void \mbox{\hyperlink{classGroupComposite_a6ff915fcf00b91ca13ea463195409abf}{show\+Un\+Selected}} (QColor \mbox{\hyperlink{classGroupComposite_a241364693539b87bb00f0de654712d10}{color}})
+\item 
+bool \mbox{\hyperlink{classGroupComposite_ac5761e431b9f83643c7e20d7db8b8d7d}{is\+Focused}} (QPointF scene\+Pos)
+\item 
+virtual bool \mbox{\hyperlink{classGroupComposite_aa74eb8a28991e3e74a69bba42240431f}{can\+Scale}} (double mlt, QGraphics\+View \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classGroupComposite_ae7b76bbb7286904e92007d9059e3e35c}{view}})
+\item 
+void \mbox{\hyperlink{classGroupComposite_aa257b3d8abb888e1b8269f35e7393140}{scale}} (double mlt, QGraphics\+View \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classGroupComposite_ae7b76bbb7286904e92007d9059e3e35c}{view}})
+\item 
+bool \mbox{\hyperlink{classGroupComposite_a71f264558b454fdfecf6a5bdef45a5d8}{is\+Shape\+Rect\+In\+View}} (QGraphics\+View \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classGroupComposite_ae7b76bbb7286904e92007d9059e3e35c}{view}})
+\item 
+bool \mbox{\hyperlink{classGroupComposite_a154d94ecb5c93d96400cf4b4f38004b4}{can\+Move}} (double difX, double difY, QGraphics\+View \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classGroupComposite_ae7b76bbb7286904e92007d9059e3e35c}{view}})
+\item 
+void \mbox{\hyperlink{classGroupComposite_a4df16b53c5cd0ff26da77a733e0ee5b1}{move}} (double difX, double difY, QGraphics\+View \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classGroupComposite_ae7b76bbb7286904e92007d9059e3e35c}{view}}) override
+\item 
+void \mbox{\hyperlink{classGroupComposite_a1494c191504174c12166c7ac86dd417e}{set\+Movable}} (bool val)
+\item 
+void \mbox{\hyperlink{classGroupComposite_afbac0a2ea4fc15851288bb685cd63de8}{draw\+On\+Scene}} (QGraphics\+Scene \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classGroupComposite_aef97b3fea7ba83de64f20b221a6f43cd}{scene}})
+\item 
+bool \mbox{\hyperlink{classGroupComposite_aafc9588735f7dee17460aae5ae8da41f}{ismovable}} ()
+\item 
+void \mbox{\hyperlink{classGroupComposite_a0d3ad95d16c43c2f9604bfa67ba4acaf}{move\+In\+View\+Back}} (QGraphics\+View \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classGroupComposite_ae7b76bbb7286904e92007d9059e3e35c}{view}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classIShape}{IShape}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classIShape_abecc7b52521ee60efa01d65a855dd652}{\texorpdfstring{$\sim$}{\string~}\+IShape}} ()
+\item 
+virtual void \mbox{\hyperlink{classIShape_a8343265ba910dace012d0625e4da302a}{save\+To\+File}} (std\+::ofstream \&)=0
+\item 
+virtual \mbox{\hyperlink{classIShape}{IShape}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classIShape_a6a7dc2bdf5e862c1bd749d51d079ec6d}{load\+From\+File}} (std\+::ifstream \&)=0
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+QGraphics\+Scene \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classGroupComposite_aef97b3fea7ba83de64f20b221a6f43cd}{scene}}
+\item 
+QColor \mbox{\hyperlink{classGroupComposite_a241364693539b87bb00f0de654712d10}{color}}
+\item 
+QGraphics\+View \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classGroupComposite_ae7b76bbb7286904e92007d9059e3e35c}{view}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classIShape}{IShape}}}
+\begin{DoxyCompactItemize}
+\item 
+QColor \mbox{\hyperlink{classIShape_a4cf09c449379099b2889036a7760cb5a}{color}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classGroupComposite_a00a580deb86a0d47078f87406e81ccca}{size}}
+\item 
+int \mbox{\hyperlink{classGroupComposite_a617783adcd50f07157bc66a851b56bd6}{x}}
+\item 
+int \mbox{\hyperlink{classGroupComposite_a77fbe737999f703f121cabcccc55a9ad}{y}}
+\item 
+QVector$<$ \mbox{\hyperlink{classIShape}{IShape}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classGroupComposite_a136e8cff000cd0b6c9094ec5d9d15f58}{shapes}}
+\item 
+\mbox{\hyperlink{classIShapeCreator}{IShape\+Creator}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classGroupComposite_a827d655e53c76dd3e2c008aa2b9406dc}{shape\+Creator}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classGroupComposite_a5023f7019ef4cfec09b16829ffb867d4}\label{classGroupComposite_a5023f7019ef4cfec09b16829ffb867d4} 
+\index{GroupComposite@{GroupComposite}!````~GroupComposite@{\texorpdfstring{$\sim$}{\string~}GroupComposite}}
+\index{````~GroupComposite@{\texorpdfstring{$\sim$}{\string~}GroupComposite}!GroupComposite@{GroupComposite}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}GroupComposite()}{\string~GroupComposite()}}
+{\footnotesize\ttfamily Group\+Composite\+::\texorpdfstring{$\sim$}{\string~}\+Group\+Composite (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classGroupComposite_a0829dfa83fd87182e366fb816bd84f84}\label{classGroupComposite_a0829dfa83fd87182e366fb816bd84f84} 
+\index{GroupComposite@{GroupComposite}!GroupComposite@{GroupComposite}}
+\index{GroupComposite@{GroupComposite}!GroupComposite@{GroupComposite}}
+\doxysubsubsection{\texorpdfstring{GroupComposite()}{GroupComposite()}}
+{\footnotesize\ttfamily Group\+Composite\+::\+Group\+Composite (\begin{DoxyParamCaption}\item[{QVector$<$ \mbox{\hyperlink{classIShape}{IShape}} \texorpdfstring{$\ast$}{*} $>$}]{shapes,  }\item[{QGraphics\+Scene \texorpdfstring{$\ast$}{*}}]{scene }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classGroupComposite_a154d94ecb5c93d96400cf4b4f38004b4}\label{classGroupComposite_a154d94ecb5c93d96400cf4b4f38004b4} 
+\index{GroupComposite@{GroupComposite}!canMove@{canMove}}
+\index{canMove@{canMove}!GroupComposite@{GroupComposite}}
+\doxysubsubsection{\texorpdfstring{canMove()}{canMove()}}
+{\footnotesize\ttfamily bool Group\+Composite\+::can\+Move (\begin{DoxyParamCaption}\item[{double}]{difX,  }\item[{double}]{difY,  }\item[{QGraphics\+View \texorpdfstring{$\ast$}{*}}]{view }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIShape_aff376eb70a062ddff0690c94ecdcb562}{IShape}}.
+
+\Hypertarget{classGroupComposite_aa74eb8a28991e3e74a69bba42240431f}\label{classGroupComposite_aa74eb8a28991e3e74a69bba42240431f} 
+\index{GroupComposite@{GroupComposite}!canScale@{canScale}}
+\index{canScale@{canScale}!GroupComposite@{GroupComposite}}
+\doxysubsubsection{\texorpdfstring{canScale()}{canScale()}}
+{\footnotesize\ttfamily virtual bool Group\+Composite\+::can\+Scale (\begin{DoxyParamCaption}\item[{double}]{mlt,  }\item[{QGraphics\+View \texorpdfstring{$\ast$}{*}}]{view }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIShape_ada80531645abcd6736abff48bb6e1e0f}{IShape}}.
+
+\Hypertarget{classGroupComposite_a9ac88a3d3175c7451e7fb9cd69bb0ff7}\label{classGroupComposite_a9ac88a3d3175c7451e7fb9cd69bb0ff7} 
+\index{GroupComposite@{GroupComposite}!changeColor@{changeColor}}
+\index{changeColor@{changeColor}!GroupComposite@{GroupComposite}}
+\doxysubsubsection{\texorpdfstring{changeColor()}{changeColor()}}
+{\footnotesize\ttfamily void Group\+Composite\+::change\+Color (\begin{DoxyParamCaption}\item[{QColor}]{color }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIShape_a736864e14f465dd673ebc8cbdbb030a2}{IShape}}.
+
+\Hypertarget{classGroupComposite_ad27eaaf8294f95ea6faf91d6b598726d}\label{classGroupComposite_ad27eaaf8294f95ea6faf91d6b598726d} 
+\index{GroupComposite@{GroupComposite}!changeSize@{changeSize}}
+\index{changeSize@{changeSize}!GroupComposite@{GroupComposite}}
+\doxysubsubsection{\texorpdfstring{changeSize()}{changeSize()}}
+{\footnotesize\ttfamily virtual void Group\+Composite\+::change\+Size (\begin{DoxyParamCaption}\item[{QRectF}]{rect }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIShape_a586b174056401d66d291fccffd1f5729}{IShape}}.
+
+\Hypertarget{classGroupComposite_afbac0a2ea4fc15851288bb685cd63de8}\label{classGroupComposite_afbac0a2ea4fc15851288bb685cd63de8} 
+\index{GroupComposite@{GroupComposite}!drawOnScene@{drawOnScene}}
+\index{drawOnScene@{drawOnScene}!GroupComposite@{GroupComposite}}
+\doxysubsubsection{\texorpdfstring{drawOnScene()}{drawOnScene()}}
+{\footnotesize\ttfamily void Group\+Composite\+::draw\+On\+Scene (\begin{DoxyParamCaption}\item[{QGraphics\+Scene \texorpdfstring{$\ast$}{*}}]{scene }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIShape_a6653d708d6484557b8bd8f9a3c992748}{IShape}}.
+
+\Hypertarget{classGroupComposite_a9ef3641b78c5b0372dfd4940d99a9e8b}\label{classGroupComposite_a9ef3641b78c5b0372dfd4940d99a9e8b} 
+\index{GroupComposite@{GroupComposite}!getShapesToUngroup@{getShapesToUngroup}}
+\index{getShapesToUngroup@{getShapesToUngroup}!GroupComposite@{GroupComposite}}
+\doxysubsubsection{\texorpdfstring{getShapesToUngroup()}{getShapesToUngroup()}}
+{\footnotesize\ttfamily QVector$<$ \mbox{\hyperlink{classIShape}{IShape}} \texorpdfstring{$\ast$}{*} $>$ Group\+Composite\+::get\+Shapes\+To\+Ungroup (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classGroupComposite_afe35f65c08c3e223b36bf5255db442da}\label{classGroupComposite_afe35f65c08c3e223b36bf5255db442da} 
+\index{GroupComposite@{GroupComposite}!isContains@{isContains}}
+\index{isContains@{isContains}!GroupComposite@{GroupComposite}}
+\doxysubsubsection{\texorpdfstring{isContains()}{isContains()}}
+{\footnotesize\ttfamily bool Group\+Composite\+::is\+Contains (\begin{DoxyParamCaption}\item[{QPointF}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIShape_a28fa9d2787ef01dbdf34fcd44b55ce33}{IShape}}.
+
+\Hypertarget{classGroupComposite_ac5761e431b9f83643c7e20d7db8b8d7d}\label{classGroupComposite_ac5761e431b9f83643c7e20d7db8b8d7d} 
+\index{GroupComposite@{GroupComposite}!isFocused@{isFocused}}
+\index{isFocused@{isFocused}!GroupComposite@{GroupComposite}}
+\doxysubsubsection{\texorpdfstring{isFocused()}{isFocused()}}
+{\footnotesize\ttfamily bool Group\+Composite\+::is\+Focused (\begin{DoxyParamCaption}\item[{QPointF}]{scene\+Pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIShape_a2b58428289751b17ac79ba196f2186b7}{IShape}}.
+
+\Hypertarget{classGroupComposite_aafc9588735f7dee17460aae5ae8da41f}\label{classGroupComposite_aafc9588735f7dee17460aae5ae8da41f} 
+\index{GroupComposite@{GroupComposite}!ismovable@{ismovable}}
+\index{ismovable@{ismovable}!GroupComposite@{GroupComposite}}
+\doxysubsubsection{\texorpdfstring{ismovable()}{ismovable()}}
+{\footnotesize\ttfamily bool Group\+Composite\+::ismovable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIShape_af092d84b11b66cddbc1ff8394e13aed4}{IShape}}.
+
+\Hypertarget{classGroupComposite_a71f264558b454fdfecf6a5bdef45a5d8}\label{classGroupComposite_a71f264558b454fdfecf6a5bdef45a5d8} 
+\index{GroupComposite@{GroupComposite}!isShapeRectInView@{isShapeRectInView}}
+\index{isShapeRectInView@{isShapeRectInView}!GroupComposite@{GroupComposite}}
+\doxysubsubsection{\texorpdfstring{isShapeRectInView()}{isShapeRectInView()}}
+{\footnotesize\ttfamily bool Group\+Composite\+::is\+Shape\+Rect\+In\+View (\begin{DoxyParamCaption}\item[{QGraphics\+View \texorpdfstring{$\ast$}{*}}]{view }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIShape_ae006de18afb16e2fd71d59c42cf2143b}{IShape}}.
+
+\Hypertarget{classGroupComposite_af6faf58f699f242b04b81169572f6f72}\label{classGroupComposite_af6faf58f699f242b04b81169572f6f72} 
+\index{GroupComposite@{GroupComposite}!loadFromFile@{loadFromFile}}
+\index{loadFromFile@{loadFromFile}!GroupComposite@{GroupComposite}}
+\doxysubsubsection{\texorpdfstring{loadFromFile()}{loadFromFile()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classIShape}{IShape}} \texorpdfstring{$\ast$}{*} Group\+Composite\+::load\+From\+File (\begin{DoxyParamCaption}\item[{ifstream \&}]{in\+File }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\Hypertarget{classGroupComposite_a4df16b53c5cd0ff26da77a733e0ee5b1}\label{classGroupComposite_a4df16b53c5cd0ff26da77a733e0ee5b1} 
+\index{GroupComposite@{GroupComposite}!move@{move}}
+\index{move@{move}!GroupComposite@{GroupComposite}}
+\doxysubsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily void Group\+Composite\+::move (\begin{DoxyParamCaption}\item[{double}]{difX,  }\item[{double}]{difY,  }\item[{QGraphics\+View \texorpdfstring{$\ast$}{*}}]{view }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIShape_aa824e2755b56c551801b78115865c228}{IShape}}.
+
+\Hypertarget{classGroupComposite_a0d3ad95d16c43c2f9604bfa67ba4acaf}\label{classGroupComposite_a0d3ad95d16c43c2f9604bfa67ba4acaf} 
+\index{GroupComposite@{GroupComposite}!moveInViewBack@{moveInViewBack}}
+\index{moveInViewBack@{moveInViewBack}!GroupComposite@{GroupComposite}}
+\doxysubsubsection{\texorpdfstring{moveInViewBack()}{moveInViewBack()}}
+{\footnotesize\ttfamily void Group\+Composite\+::move\+In\+View\+Back (\begin{DoxyParamCaption}\item[{QGraphics\+View \texorpdfstring{$\ast$}{*}}]{view }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIShape_a37d03572cd2fb604de8e790b8c869a4c}{IShape}}.
+
+\Hypertarget{classGroupComposite_adb02b506ddaf38d61089cc15b2e88680}\label{classGroupComposite_adb02b506ddaf38d61089cc15b2e88680} 
+\index{GroupComposite@{GroupComposite}!removeFromScene@{removeFromScene}}
+\index{removeFromScene@{removeFromScene}!GroupComposite@{GroupComposite}}
+\doxysubsubsection{\texorpdfstring{removeFromScene()}{removeFromScene()}}
+{\footnotesize\ttfamily void Group\+Composite\+::remove\+From\+Scene (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIShape_aaeab612a848c7d735e118d7e27aa22ac}{IShape}}.
+
+\Hypertarget{classGroupComposite_acae060c35ead4cbb3b841430fa38c550}\label{classGroupComposite_acae060c35ead4cbb3b841430fa38c550} 
+\index{GroupComposite@{GroupComposite}!saveToFile@{saveToFile}}
+\index{saveToFile@{saveToFile}!GroupComposite@{GroupComposite}}
+\doxysubsubsection{\texorpdfstring{saveToFile()}{saveToFile()}}
+{\footnotesize\ttfamily void Group\+Composite\+::save\+To\+File (\begin{DoxyParamCaption}\item[{ofstream \&}]{out\+File }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classGroupComposite_aa257b3d8abb888e1b8269f35e7393140}\label{classGroupComposite_aa257b3d8abb888e1b8269f35e7393140} 
+\index{GroupComposite@{GroupComposite}!scale@{scale}}
+\index{scale@{scale}!GroupComposite@{GroupComposite}}
+\doxysubsubsection{\texorpdfstring{scale()}{scale()}}
+{\footnotesize\ttfamily void Group\+Composite\+::scale (\begin{DoxyParamCaption}\item[{double}]{mlt,  }\item[{QGraphics\+View \texorpdfstring{$\ast$}{*}}]{view }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIShape_a185b1704c0985d4e3e91c57f32f5a011}{IShape}}.
+
+\Hypertarget{classGroupComposite_a1494c191504174c12166c7ac86dd417e}\label{classGroupComposite_a1494c191504174c12166c7ac86dd417e} 
+\index{GroupComposite@{GroupComposite}!setMovable@{setMovable}}
+\index{setMovable@{setMovable}!GroupComposite@{GroupComposite}}
+\doxysubsubsection{\texorpdfstring{setMovable()}{setMovable()}}
+{\footnotesize\ttfamily void Group\+Composite\+::set\+Movable (\begin{DoxyParamCaption}\item[{bool}]{val }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIShape_acf36b45e220560390f411faf6124bc62}{IShape}}.
+
+\Hypertarget{classGroupComposite_ada7086bce03f82669b65b384149ce59f}\label{classGroupComposite_ada7086bce03f82669b65b384149ce59f} 
+\index{GroupComposite@{GroupComposite}!setNewPos@{setNewPos}}
+\index{setNewPos@{setNewPos}!GroupComposite@{GroupComposite}}
+\doxysubsubsection{\texorpdfstring{setNewPos()}{setNewPos()}}
+{\footnotesize\ttfamily void Group\+Composite\+::set\+New\+Pos (\begin{DoxyParamCaption}\item[{double}]{x,  }\item[{double}]{y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIShape_acd06e853d6d0b623ad99cf875837b06c}{IShape}}.
+
+\Hypertarget{classGroupComposite_a4020550d8881a28199b65efe33cc00eb}\label{classGroupComposite_a4020550d8881a28199b65efe33cc00eb} 
+\index{GroupComposite@{GroupComposite}!setShapeCreator@{setShapeCreator}}
+\index{setShapeCreator@{setShapeCreator}!GroupComposite@{GroupComposite}}
+\doxysubsubsection{\texorpdfstring{setShapeCreator()}{setShapeCreator()}}
+{\footnotesize\ttfamily void Group\+Composite\+::set\+Shape\+Creator (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classIShapeCreator}{IShape\+Creator}} \texorpdfstring{$\ast$}{*}}]{shape\+Creator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classGroupComposite_aefb7228f94c7bba79c6adb0a301c1047}\label{classGroupComposite_aefb7228f94c7bba79c6adb0a301c1047} 
+\index{GroupComposite@{GroupComposite}!showSelected@{showSelected}}
+\index{showSelected@{showSelected}!GroupComposite@{GroupComposite}}
+\doxysubsubsection{\texorpdfstring{showSelected()}{showSelected()}}
+{\footnotesize\ttfamily virtual void Group\+Composite\+::show\+Selected (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIShape_a3eb9bf8f89a591218e2d74f893e9bd45}{IShape}}.
+
+\Hypertarget{classGroupComposite_a6ff915fcf00b91ca13ea463195409abf}\label{classGroupComposite_a6ff915fcf00b91ca13ea463195409abf} 
+\index{GroupComposite@{GroupComposite}!showUnSelected@{showUnSelected}}
+\index{showUnSelected@{showUnSelected}!GroupComposite@{GroupComposite}}
+\doxysubsubsection{\texorpdfstring{showUnSelected()}{showUnSelected()}}
+{\footnotesize\ttfamily virtual void Group\+Composite\+::show\+Un\+Selected (\begin{DoxyParamCaption}\item[{QColor}]{color }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIShape_a51e19fbde63b4e573bef01513dad39e7}{IShape}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classGroupComposite_a241364693539b87bb00f0de654712d10}\label{classGroupComposite_a241364693539b87bb00f0de654712d10} 
+\index{GroupComposite@{GroupComposite}!color@{color}}
+\index{color@{color}!GroupComposite@{GroupComposite}}
+\doxysubsubsection{\texorpdfstring{color}{color}}
+{\footnotesize\ttfamily QColor Group\+Composite\+::color}
+
+\Hypertarget{classGroupComposite_aef97b3fea7ba83de64f20b221a6f43cd}\label{classGroupComposite_aef97b3fea7ba83de64f20b221a6f43cd} 
+\index{GroupComposite@{GroupComposite}!scene@{scene}}
+\index{scene@{scene}!GroupComposite@{GroupComposite}}
+\doxysubsubsection{\texorpdfstring{scene}{scene}}
+{\footnotesize\ttfamily QGraphics\+Scene\texorpdfstring{$\ast$}{*} Group\+Composite\+::scene}
+
+\Hypertarget{classGroupComposite_a827d655e53c76dd3e2c008aa2b9406dc}\label{classGroupComposite_a827d655e53c76dd3e2c008aa2b9406dc} 
+\index{GroupComposite@{GroupComposite}!shapeCreator@{shapeCreator}}
+\index{shapeCreator@{shapeCreator}!GroupComposite@{GroupComposite}}
+\doxysubsubsection{\texorpdfstring{shapeCreator}{shapeCreator}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classIShapeCreator}{IShape\+Creator}}\texorpdfstring{$\ast$}{*} Group\+Composite\+::shape\+Creator\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classGroupComposite_a136e8cff000cd0b6c9094ec5d9d15f58}\label{classGroupComposite_a136e8cff000cd0b6c9094ec5d9d15f58} 
+\index{GroupComposite@{GroupComposite}!shapes@{shapes}}
+\index{shapes@{shapes}!GroupComposite@{GroupComposite}}
+\doxysubsubsection{\texorpdfstring{shapes}{shapes}}
+{\footnotesize\ttfamily QVector$<$ \mbox{\hyperlink{classIShape}{IShape}} \texorpdfstring{$\ast$}{*} $>$ Group\+Composite\+::shapes\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classGroupComposite_a00a580deb86a0d47078f87406e81ccca}\label{classGroupComposite_a00a580deb86a0d47078f87406e81ccca} 
+\index{GroupComposite@{GroupComposite}!size@{size}}
+\index{size@{size}!GroupComposite@{GroupComposite}}
+\doxysubsubsection{\texorpdfstring{size}{size}}
+{\footnotesize\ttfamily int Group\+Composite\+::size\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classGroupComposite_ae7b76bbb7286904e92007d9059e3e35c}\label{classGroupComposite_ae7b76bbb7286904e92007d9059e3e35c} 
+\index{GroupComposite@{GroupComposite}!view@{view}}
+\index{view@{view}!GroupComposite@{GroupComposite}}
+\doxysubsubsection{\texorpdfstring{view}{view}}
+{\footnotesize\ttfamily QGraphics\+View\texorpdfstring{$\ast$}{*} Group\+Composite\+::view}
+
+\Hypertarget{classGroupComposite_a617783adcd50f07157bc66a851b56bd6}\label{classGroupComposite_a617783adcd50f07157bc66a851b56bd6} 
+\index{GroupComposite@{GroupComposite}!x@{x}}
+\index{x@{x}!GroupComposite@{GroupComposite}}
+\doxysubsubsection{\texorpdfstring{x}{x}}
+{\footnotesize\ttfamily int Group\+Composite\+::x\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classGroupComposite_a77fbe737999f703f121cabcccc55a9ad}\label{classGroupComposite_a77fbe737999f703f121cabcccc55a9ad} 
+\index{GroupComposite@{GroupComposite}!y@{y}}
+\index{y@{y}!GroupComposite@{GroupComposite}}
+\doxysubsubsection{\texorpdfstring{y}{y}}
+{\footnotesize\ttfamily int Group\+Composite\+::y\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{shape_8h}{shape.\+h}}\end{DoxyCompactItemize}

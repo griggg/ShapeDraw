@@ -1,0 +1,88 @@
+\doxysection{IShape.\+h}
+\hypertarget{IShape_8h_source}{}\label{IShape_8h_source}\mbox{\hyperlink{IShape_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ ISHAPE\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ ISHAPE\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <QAbstractGraphicsShapeItem>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <QApplication>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <QColorDialog>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <QDebug>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <QFileDialog>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <QFormLayout>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <QGraphicsEllipseItem>}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <QGraphicsItem>}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <QGraphicsScene>}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <QGraphicsView>}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <QLabel>}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <QLayout>}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <QMainWindow>}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ <QMouseEvent>}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ <QPainterPath>}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#include\ <QPushButton>}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#include\ <QRandomGenerator>}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#include\ <QSizeGrip>}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#include\ <QSplitter>}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#include\ <QSet>}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#include\ <stack>}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classIShape}{IShape}}\ \{}
+\DoxyCodeLine{00051\ \textcolor{keyword}{public}:\ \textcolor{keyword}{virtual}\mbox{\hyperlink{classIShape_abecc7b52521ee60efa01d65a855dd652}{\string~IShape}}()\ \{\}}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classIShape_a586b174056401d66d291fccffd1f5729}{changeSize}}(QRectF)\ =\ 0;}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classIShape_a28fa9d2787ef01dbdf34fcd44b55ce33}{isContains}}(QPointF\ p)\ =\ 0;}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classIShape_a736864e14f465dd673ebc8cbdbb030a2}{changeColor}}(QColor\ \mbox{\hyperlink{classIShape_a4cf09c449379099b2889036a7760cb5a}{color}})\ =\ 0;}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classIShape_acd06e853d6d0b623ad99cf875837b06c}{setNewPos}}(\textcolor{keywordtype}{double}\ w,\ \textcolor{keywordtype}{double}\ h)\ =\ 0;}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classIShape_a3eb9bf8f89a591218e2d74f893e9bd45}{showSelected}}()\ =\ 0;}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classIShape_a51e19fbde63b4e573bef01513dad39e7}{showUnSelected}}(QColor\ \mbox{\hyperlink{classIShape_a4cf09c449379099b2889036a7760cb5a}{color}})\ =\ 0;}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classIShape_a6653d708d6484557b8bd8f9a3c992748}{drawOnScene}}(QGraphicsScene\ *\ scene)\ =\ 0;}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classIShape_af092d84b11b66cddbc1ff8394e13aed4}{ismovable}}()\ =\ 0;}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classIShape_acf36b45e220560390f411faf6124bc62}{setMovable}}(\textcolor{keywordtype}{bool})\ =\ 0;}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classIShape_aaeab612a848c7d735e118d7e27aa22ac}{removeFromScene}}()\ =\ 0;}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classIShape_aa824e2755b56c551801b78115865c228}{move}}(\textcolor{keywordtype}{double}\ difX,\ \textcolor{keywordtype}{double}\ difY,\ QGraphicsView\ *\ view)\ =\ 0;}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classIShape_a185b1704c0985d4e3e91c57f32f5a011}{scale}}(\textcolor{keywordtype}{double}\ mlt,\ QGraphicsView\ *\ view)\ =\ 0;}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classIShape_ada80531645abcd6736abff48bb6e1e0f}{canScale}}(\textcolor{keywordtype}{double}\ mlt,\ QGraphicsView\ *\ view)\ =\ 0;}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classIShape_ae006de18afb16e2fd71d59c42cf2143b}{isShapeRectInView}}(QGraphicsView\ *\ view)\ =\ 0;}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classIShape_a37d03572cd2fb604de8e790b8c869a4c}{moveInViewBack}}(QGraphicsView\ *\ view)\ =\ 0;}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classIShape_a2b58428289751b17ac79ba196f2186b7}{isFocused}}(QPointF\ scenePos)\ =\ 0;}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classIShape_a8343265ba910dace012d0625e4da302a}{saveToFile}}(std::ofstream\ \&\ )\ =\ 0;}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classIShape}{IShape}}\ *\ \mbox{\hyperlink{classIShape_a6a7dc2bdf5e862c1bd749d51d079ec6d}{loadFromFile}}(std::ifstream\ \&\ )\ =\ 0;}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classIShape_aff376eb70a062ddff0690c94ecdcb562}{canMove}}(\textcolor{keywordtype}{double}\ difX,\ \textcolor{keywordtype}{double}\ difY,\ QGraphicsView\ *\ view)\ =\ 0;}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ QColor\ \mbox{\hyperlink{classIShape_a4cf09c449379099b2889036a7760cb5a}{color}};}
+\DoxyCodeLine{00081\ \};}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ISHAPE\_H}}
+
+\end{DoxyCode}

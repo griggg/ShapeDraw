@@ -1,0 +1,371 @@
+\doxysection{Custom\+Shape Class Reference}
+\hypertarget{classCustomShape}{}\label{classCustomShape}\index{CustomShape@{CustomShape}}
+
+
+{\ttfamily \#include $<$shape.\+h$>$}
+
+
+
+Inheritance diagram for Custom\+Shape\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classCustomShape__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Custom\+Shape\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classCustomShape__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classCustomShape}{Custom\+Shape}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classCustomShape_a6bb3d634e14755c3f8e7642cf1b31cd2}{clone}} ()
+\item 
+void \mbox{\hyperlink{classCustomShape_ad921f167f1f8723efa42c71e416d9691}{change\+Color}} (QColor \mbox{\hyperlink{classCustomShape_ab94ab413164494ec8e4619e6e794db18}{color}}) override
+\item 
+void \mbox{\hyperlink{classCustomShape_a7053598ae32ff0179b2f8109c95cd280}{save\+To\+File}} (ofstream \&out\+File) override
+\item 
+virtual string \mbox{\hyperlink{classCustomShape_ad94ac94c2dd55004eceb0b231972ea44}{get\+Type}} ()
+\item 
+\mbox{\hyperlink{classCustomShape_ae040b955f4a479aaf52bb0374122a824}{Custom\+Shape}} (int posX, int posY, int \mbox{\hyperlink{classCustomShape_ab9b8044933d5f7b9f311f81bc07224b9}{size}}, QGraphics\+Item \texorpdfstring{$\ast$}{*}parent=nullptr)
+\item 
+void \mbox{\hyperlink{classCustomShape_a0c3803f910fdd1b84ed9f337fbaebbf8}{remove\+From\+Scene}} () override
+\item 
+QRectF \mbox{\hyperlink{classCustomShape_a17edd8f8665bc7bfaa0ff18a020be0fe}{get\+Rect}} ()
+\item 
+virtual void \mbox{\hyperlink{classCustomShape_afbca4afb6cfdf2046ac33a71cfb96330}{change\+Size}} (QRectF rect) override
+\item 
+QPointF \mbox{\hyperlink{classCustomShape_a4dfc43cdcca4014e72b3b830c63e59c8}{get\+Map\+From\+Scene}} (QPointF pos)
+\item 
+bool \mbox{\hyperlink{classCustomShape_afa6ba25413077a60b218768dbacf2dde}{is\+Contains}} (QPointF p) override
+\item 
+void \mbox{\hyperlink{classCustomShape_a4070291da011650be7f71a339314c908}{set\+New\+Pos}} (double \mbox{\hyperlink{classCustomShape_ae1d0aea11158b38c142cc0ac0a1813ef}{x}}, double \mbox{\hyperlink{classCustomShape_a0c76f6da4a2403c45befa0e253868c9d}{y}}) override
+\item 
+virtual void \mbox{\hyperlink{classCustomShape_a84509baeb04a4df90c8faf27515d6ee5}{show\+Selected}} () override
+\item 
+virtual void \mbox{\hyperlink{classCustomShape_a51e2b47afd4a84d3e9e847c696585a54}{show\+Un\+Selected}} (QColor \mbox{\hyperlink{classCustomShape_ab94ab413164494ec8e4619e6e794db18}{color}}) override
+\item 
+bool \mbox{\hyperlink{classCustomShape_a1e0b4452c3001a945d52282e5d2d5af0}{is\+Focused}} (QPointF scene\+Pos)
+\item 
+virtual bool \mbox{\hyperlink{classCustomShape_ac5f890badc016c5ec3bfeed08dbb87ec}{can\+Scale}} (double mlt, QGraphics\+View \texorpdfstring{$\ast$}{*}view)
+\item 
+void \mbox{\hyperlink{classCustomShape_a9440e7966b621dc32446c658886ed9ac}{scale}} (double mlt, QGraphics\+View \texorpdfstring{$\ast$}{*}view)
+\item 
+bool \mbox{\hyperlink{classCustomShape_a8169d65da6f7fa89474c37677d8bbe6b}{is\+Shape\+Rect\+In\+View}} (QGraphics\+View \texorpdfstring{$\ast$}{*}view)
+\item 
+bool \mbox{\hyperlink{classCustomShape_addc23fb964caf5f38ad276557bf29cc8}{can\+Move}} (double difX, double difY, QGraphics\+View \texorpdfstring{$\ast$}{*}view)
+\item 
+void \mbox{\hyperlink{classCustomShape_a2a2377999541fb8fc0075b2575658986}{move}} (double difX, double difY, QGraphics\+View \texorpdfstring{$\ast$}{*}view)
+\item 
+void \mbox{\hyperlink{classCustomShape_acd014562135cd96419b47d022eeac52d}{set\+Movable}} (bool val)
+\item 
+void \mbox{\hyperlink{classCustomShape_adb0a9e6a28447c417bf96630cf1f92a1}{draw\+On\+Scene}} (QGraphics\+Scene \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classCustomShape_a5c7473da0bb74f995d7a7fe1247eab27}{scene}})
+\item 
+bool \mbox{\hyperlink{classCustomShape_aa766988757e657dc91c5e1ad5d29ad3b}{ismovable}} ()
+\item 
+void \mbox{\hyperlink{classCustomShape_a1989c2ea0bc801496e836ffd0cb49a63}{move\+In\+View\+Back}} (QGraphics\+View \texorpdfstring{$\ast$}{*}view)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classIShape}{IShape}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classIShape_abecc7b52521ee60efa01d65a855dd652}{\texorpdfstring{$\sim$}{\string~}\+IShape}} ()
+\item 
+virtual void \mbox{\hyperlink{classIShape_a8343265ba910dace012d0625e4da302a}{save\+To\+File}} (std\+::ofstream \&)=0
+\item 
+virtual \mbox{\hyperlink{classIShape}{IShape}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classIShape_a6a7dc2bdf5e862c1bd749d51d079ec6d}{load\+From\+File}} (std\+::ifstream \&)=0
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+QGraphics\+Scene \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classCustomShape_a5c7473da0bb74f995d7a7fe1247eab27}{scene}}
+\item 
+QColor \mbox{\hyperlink{classCustomShape_ab94ab413164494ec8e4619e6e794db18}{color}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classIShape}{IShape}}}
+\begin{DoxyCompactItemize}
+\item 
+QColor \mbox{\hyperlink{classIShape_a4cf09c449379099b2889036a7760cb5a}{color}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classCustomShape_ab9b8044933d5f7b9f311f81bc07224b9}{size}}
+\item 
+int \mbox{\hyperlink{classCustomShape_ae1d0aea11158b38c142cc0ac0a1813ef}{x}}
+\item 
+int \mbox{\hyperlink{classCustomShape_a0c76f6da4a2403c45befa0e253868c9d}{y}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classCustomShape_ae040b955f4a479aaf52bb0374122a824}\label{classCustomShape_ae040b955f4a479aaf52bb0374122a824} 
+\index{CustomShape@{CustomShape}!CustomShape@{CustomShape}}
+\index{CustomShape@{CustomShape}!CustomShape@{CustomShape}}
+\doxysubsubsection{\texorpdfstring{CustomShape()}{CustomShape()}}
+{\footnotesize\ttfamily Custom\+Shape\+::\+Custom\+Shape (\begin{DoxyParamCaption}\item[{int}]{posX,  }\item[{int}]{posY,  }\item[{int}]{size,  }\item[{QGraphics\+Item \texorpdfstring{$\ast$}{*}}]{parent = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classCustomShape_addc23fb964caf5f38ad276557bf29cc8}\label{classCustomShape_addc23fb964caf5f38ad276557bf29cc8} 
+\index{CustomShape@{CustomShape}!canMove@{canMove}}
+\index{canMove@{canMove}!CustomShape@{CustomShape}}
+\doxysubsubsection{\texorpdfstring{canMove()}{canMove()}}
+{\footnotesize\ttfamily bool Custom\+Shape\+::can\+Move (\begin{DoxyParamCaption}\item[{double}]{difX,  }\item[{double}]{difY,  }\item[{QGraphics\+View \texorpdfstring{$\ast$}{*}}]{view }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIShape_aff376eb70a062ddff0690c94ecdcb562}{IShape}}.
+
+\Hypertarget{classCustomShape_ac5f890badc016c5ec3bfeed08dbb87ec}\label{classCustomShape_ac5f890badc016c5ec3bfeed08dbb87ec} 
+\index{CustomShape@{CustomShape}!canScale@{canScale}}
+\index{canScale@{canScale}!CustomShape@{CustomShape}}
+\doxysubsubsection{\texorpdfstring{canScale()}{canScale()}}
+{\footnotesize\ttfamily virtual bool Custom\+Shape\+::can\+Scale (\begin{DoxyParamCaption}\item[{double}]{mlt,  }\item[{QGraphics\+View \texorpdfstring{$\ast$}{*}}]{view }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIShape_ada80531645abcd6736abff48bb6e1e0f}{IShape}}.
+
+\Hypertarget{classCustomShape_ad921f167f1f8723efa42c71e416d9691}\label{classCustomShape_ad921f167f1f8723efa42c71e416d9691} 
+\index{CustomShape@{CustomShape}!changeColor@{changeColor}}
+\index{changeColor@{changeColor}!CustomShape@{CustomShape}}
+\doxysubsubsection{\texorpdfstring{changeColor()}{changeColor()}}
+{\footnotesize\ttfamily void Custom\+Shape\+::change\+Color (\begin{DoxyParamCaption}\item[{QColor}]{color }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIShape_a736864e14f465dd673ebc8cbdbb030a2}{IShape}}.
+
+\Hypertarget{classCustomShape_afbca4afb6cfdf2046ac33a71cfb96330}\label{classCustomShape_afbca4afb6cfdf2046ac33a71cfb96330} 
+\index{CustomShape@{CustomShape}!changeSize@{changeSize}}
+\index{changeSize@{changeSize}!CustomShape@{CustomShape}}
+\doxysubsubsection{\texorpdfstring{changeSize()}{changeSize()}}
+{\footnotesize\ttfamily virtual void Custom\+Shape\+::change\+Size (\begin{DoxyParamCaption}\item[{QRectF}]{rect }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIShape_a586b174056401d66d291fccffd1f5729}{IShape}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classMyLineItem_af1fdaf5576c31d7d5088e6ab6873eb7c}{My\+Line\+Item}}, and \mbox{\hyperlink{classMyTrapezoidItem_a1569e48f403eea02f8b71b5ae594fa18}{My\+Trapezoid\+Item}}.
+
+\Hypertarget{classCustomShape_a6bb3d634e14755c3f8e7642cf1b31cd2}\label{classCustomShape_a6bb3d634e14755c3f8e7642cf1b31cd2} 
+\index{CustomShape@{CustomShape}!clone@{clone}}
+\index{clone@{clone}!CustomShape@{CustomShape}}
+\doxysubsubsection{\texorpdfstring{clone()}{clone()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classCustomShape}{Custom\+Shape}} \texorpdfstring{$\ast$}{*} Custom\+Shape\+::clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\Hypertarget{classCustomShape_adb0a9e6a28447c417bf96630cf1f92a1}\label{classCustomShape_adb0a9e6a28447c417bf96630cf1f92a1} 
+\index{CustomShape@{CustomShape}!drawOnScene@{drawOnScene}}
+\index{drawOnScene@{drawOnScene}!CustomShape@{CustomShape}}
+\doxysubsubsection{\texorpdfstring{drawOnScene()}{drawOnScene()}}
+{\footnotesize\ttfamily void Custom\+Shape\+::draw\+On\+Scene (\begin{DoxyParamCaption}\item[{QGraphics\+Scene \texorpdfstring{$\ast$}{*}}]{scene }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIShape_a6653d708d6484557b8bd8f9a3c992748}{IShape}}.
+
+\Hypertarget{classCustomShape_a4dfc43cdcca4014e72b3b830c63e59c8}\label{classCustomShape_a4dfc43cdcca4014e72b3b830c63e59c8} 
+\index{CustomShape@{CustomShape}!getMapFromScene@{getMapFromScene}}
+\index{getMapFromScene@{getMapFromScene}!CustomShape@{CustomShape}}
+\doxysubsubsection{\texorpdfstring{getMapFromScene()}{getMapFromScene()}}
+{\footnotesize\ttfamily QPointF Custom\+Shape\+::get\+Map\+From\+Scene (\begin{DoxyParamCaption}\item[{QPointF}]{pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classCustomShape_a17edd8f8665bc7bfaa0ff18a020be0fe}\label{classCustomShape_a17edd8f8665bc7bfaa0ff18a020be0fe} 
+\index{CustomShape@{CustomShape}!getRect@{getRect}}
+\index{getRect@{getRect}!CustomShape@{CustomShape}}
+\doxysubsubsection{\texorpdfstring{getRect()}{getRect()}}
+{\footnotesize\ttfamily QRectF Custom\+Shape\+::get\+Rect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classCustomShape_ad94ac94c2dd55004eceb0b231972ea44}\label{classCustomShape_ad94ac94c2dd55004eceb0b231972ea44} 
+\index{CustomShape@{CustomShape}!getType@{getType}}
+\index{getType@{getType}!CustomShape@{CustomShape}}
+\doxysubsubsection{\texorpdfstring{getType()}{getType()}}
+{\footnotesize\ttfamily virtual string Custom\+Shape\+::get\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{classMyCircleItem_a4b59bbe67e0853b1046661120f3a59ee}{My\+Circle\+Item}}, \mbox{\hyperlink{classMySquareItem_a3df4c01c3ac33e93e76a1617554d46a3}{My\+Square\+Item}}, \mbox{\hyperlink{classMyTriangleItem_aff6d5e41b9c5ac89eef2a3a7a3855f9e}{My\+Triangle\+Item}}, \mbox{\hyperlink{classMyLineItem_a69cc1248fd90d23b29f997d435dae501}{My\+Line\+Item}}, and \mbox{\hyperlink{classMyTrapezoidItem_a205c89fa14c43087f4fd92b0acb0306b}{My\+Trapezoid\+Item}}.
+
+\Hypertarget{classCustomShape_afa6ba25413077a60b218768dbacf2dde}\label{classCustomShape_afa6ba25413077a60b218768dbacf2dde} 
+\index{CustomShape@{CustomShape}!isContains@{isContains}}
+\index{isContains@{isContains}!CustomShape@{CustomShape}}
+\doxysubsubsection{\texorpdfstring{isContains()}{isContains()}}
+{\footnotesize\ttfamily bool Custom\+Shape\+::is\+Contains (\begin{DoxyParamCaption}\item[{QPointF}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIShape_a28fa9d2787ef01dbdf34fcd44b55ce33}{IShape}}.
+
+\Hypertarget{classCustomShape_a1e0b4452c3001a945d52282e5d2d5af0}\label{classCustomShape_a1e0b4452c3001a945d52282e5d2d5af0} 
+\index{CustomShape@{CustomShape}!isFocused@{isFocused}}
+\index{isFocused@{isFocused}!CustomShape@{CustomShape}}
+\doxysubsubsection{\texorpdfstring{isFocused()}{isFocused()}}
+{\footnotesize\ttfamily bool Custom\+Shape\+::is\+Focused (\begin{DoxyParamCaption}\item[{QPointF}]{scene\+Pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIShape_a2b58428289751b17ac79ba196f2186b7}{IShape}}.
+
+\Hypertarget{classCustomShape_aa766988757e657dc91c5e1ad5d29ad3b}\label{classCustomShape_aa766988757e657dc91c5e1ad5d29ad3b} 
+\index{CustomShape@{CustomShape}!ismovable@{ismovable}}
+\index{ismovable@{ismovable}!CustomShape@{CustomShape}}
+\doxysubsubsection{\texorpdfstring{ismovable()}{ismovable()}}
+{\footnotesize\ttfamily bool Custom\+Shape\+::ismovable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIShape_af092d84b11b66cddbc1ff8394e13aed4}{IShape}}.
+
+\Hypertarget{classCustomShape_a8169d65da6f7fa89474c37677d8bbe6b}\label{classCustomShape_a8169d65da6f7fa89474c37677d8bbe6b} 
+\index{CustomShape@{CustomShape}!isShapeRectInView@{isShapeRectInView}}
+\index{isShapeRectInView@{isShapeRectInView}!CustomShape@{CustomShape}}
+\doxysubsubsection{\texorpdfstring{isShapeRectInView()}{isShapeRectInView()}}
+{\footnotesize\ttfamily bool Custom\+Shape\+::is\+Shape\+Rect\+In\+View (\begin{DoxyParamCaption}\item[{QGraphics\+View \texorpdfstring{$\ast$}{*}}]{view }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIShape_ae006de18afb16e2fd71d59c42cf2143b}{IShape}}.
+
+\Hypertarget{classCustomShape_a2a2377999541fb8fc0075b2575658986}\label{classCustomShape_a2a2377999541fb8fc0075b2575658986} 
+\index{CustomShape@{CustomShape}!move@{move}}
+\index{move@{move}!CustomShape@{CustomShape}}
+\doxysubsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily void Custom\+Shape\+::move (\begin{DoxyParamCaption}\item[{double}]{difX,  }\item[{double}]{difY,  }\item[{QGraphics\+View \texorpdfstring{$\ast$}{*}}]{view }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIShape_aa824e2755b56c551801b78115865c228}{IShape}}.
+
+\Hypertarget{classCustomShape_a1989c2ea0bc801496e836ffd0cb49a63}\label{classCustomShape_a1989c2ea0bc801496e836ffd0cb49a63} 
+\index{CustomShape@{CustomShape}!moveInViewBack@{moveInViewBack}}
+\index{moveInViewBack@{moveInViewBack}!CustomShape@{CustomShape}}
+\doxysubsubsection{\texorpdfstring{moveInViewBack()}{moveInViewBack()}}
+{\footnotesize\ttfamily void Custom\+Shape\+::move\+In\+View\+Back (\begin{DoxyParamCaption}\item[{QGraphics\+View \texorpdfstring{$\ast$}{*}}]{view }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIShape_a37d03572cd2fb604de8e790b8c869a4c}{IShape}}.
+
+\Hypertarget{classCustomShape_a0c3803f910fdd1b84ed9f337fbaebbf8}\label{classCustomShape_a0c3803f910fdd1b84ed9f337fbaebbf8} 
+\index{CustomShape@{CustomShape}!removeFromScene@{removeFromScene}}
+\index{removeFromScene@{removeFromScene}!CustomShape@{CustomShape}}
+\doxysubsubsection{\texorpdfstring{removeFromScene()}{removeFromScene()}}
+{\footnotesize\ttfamily void Custom\+Shape\+::remove\+From\+Scene (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIShape_aaeab612a848c7d735e118d7e27aa22ac}{IShape}}.
+
+\Hypertarget{classCustomShape_a7053598ae32ff0179b2f8109c95cd280}\label{classCustomShape_a7053598ae32ff0179b2f8109c95cd280} 
+\index{CustomShape@{CustomShape}!saveToFile@{saveToFile}}
+\index{saveToFile@{saveToFile}!CustomShape@{CustomShape}}
+\doxysubsubsection{\texorpdfstring{saveToFile()}{saveToFile()}}
+{\footnotesize\ttfamily void Custom\+Shape\+::save\+To\+File (\begin{DoxyParamCaption}\item[{ofstream \&}]{out\+File }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+\Hypertarget{classCustomShape_a9440e7966b621dc32446c658886ed9ac}\label{classCustomShape_a9440e7966b621dc32446c658886ed9ac} 
+\index{CustomShape@{CustomShape}!scale@{scale}}
+\index{scale@{scale}!CustomShape@{CustomShape}}
+\doxysubsubsection{\texorpdfstring{scale()}{scale()}}
+{\footnotesize\ttfamily void Custom\+Shape\+::scale (\begin{DoxyParamCaption}\item[{double}]{mlt,  }\item[{QGraphics\+View \texorpdfstring{$\ast$}{*}}]{view }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIShape_a185b1704c0985d4e3e91c57f32f5a011}{IShape}}.
+
+\Hypertarget{classCustomShape_acd014562135cd96419b47d022eeac52d}\label{classCustomShape_acd014562135cd96419b47d022eeac52d} 
+\index{CustomShape@{CustomShape}!setMovable@{setMovable}}
+\index{setMovable@{setMovable}!CustomShape@{CustomShape}}
+\doxysubsubsection{\texorpdfstring{setMovable()}{setMovable()}}
+{\footnotesize\ttfamily void Custom\+Shape\+::set\+Movable (\begin{DoxyParamCaption}\item[{bool}]{val }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIShape_acf36b45e220560390f411faf6124bc62}{IShape}}.
+
+\Hypertarget{classCustomShape_a4070291da011650be7f71a339314c908}\label{classCustomShape_a4070291da011650be7f71a339314c908} 
+\index{CustomShape@{CustomShape}!setNewPos@{setNewPos}}
+\index{setNewPos@{setNewPos}!CustomShape@{CustomShape}}
+\doxysubsubsection{\texorpdfstring{setNewPos()}{setNewPos()}}
+{\footnotesize\ttfamily void Custom\+Shape\+::set\+New\+Pos (\begin{DoxyParamCaption}\item[{double}]{x,  }\item[{double}]{y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIShape_acd06e853d6d0b623ad99cf875837b06c}{IShape}}.
+
+\Hypertarget{classCustomShape_a84509baeb04a4df90c8faf27515d6ee5}\label{classCustomShape_a84509baeb04a4df90c8faf27515d6ee5} 
+\index{CustomShape@{CustomShape}!showSelected@{showSelected}}
+\index{showSelected@{showSelected}!CustomShape@{CustomShape}}
+\doxysubsubsection{\texorpdfstring{showSelected()}{showSelected()}}
+{\footnotesize\ttfamily virtual void Custom\+Shape\+::show\+Selected (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIShape_a3eb9bf8f89a591218e2d74f893e9bd45}{IShape}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classMyLineItem_abca4706fa39e3f6bc228bf792421a644}{My\+Line\+Item}}.
+
+\Hypertarget{classCustomShape_a51e2b47afd4a84d3e9e847c696585a54}\label{classCustomShape_a51e2b47afd4a84d3e9e847c696585a54} 
+\index{CustomShape@{CustomShape}!showUnSelected@{showUnSelected}}
+\index{showUnSelected@{showUnSelected}!CustomShape@{CustomShape}}
+\doxysubsubsection{\texorpdfstring{showUnSelected()}{showUnSelected()}}
+{\footnotesize\ttfamily virtual void Custom\+Shape\+::show\+Un\+Selected (\begin{DoxyParamCaption}\item[{QColor}]{color }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIShape_a51e19fbde63b4e573bef01513dad39e7}{IShape}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classMyLineItem_a010c3b2249a06f778e0b1d2cbcdac2b1}{My\+Line\+Item}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classCustomShape_ab94ab413164494ec8e4619e6e794db18}\label{classCustomShape_ab94ab413164494ec8e4619e6e794db18} 
+\index{CustomShape@{CustomShape}!color@{color}}
+\index{color@{color}!CustomShape@{CustomShape}}
+\doxysubsubsection{\texorpdfstring{color}{color}}
+{\footnotesize\ttfamily QColor Custom\+Shape\+::color}
+
+\Hypertarget{classCustomShape_a5c7473da0bb74f995d7a7fe1247eab27}\label{classCustomShape_a5c7473da0bb74f995d7a7fe1247eab27} 
+\index{CustomShape@{CustomShape}!scene@{scene}}
+\index{scene@{scene}!CustomShape@{CustomShape}}
+\doxysubsubsection{\texorpdfstring{scene}{scene}}
+{\footnotesize\ttfamily QGraphics\+Scene\texorpdfstring{$\ast$}{*} Custom\+Shape\+::scene}
+
+\Hypertarget{classCustomShape_ab9b8044933d5f7b9f311f81bc07224b9}\label{classCustomShape_ab9b8044933d5f7b9f311f81bc07224b9} 
+\index{CustomShape@{CustomShape}!size@{size}}
+\index{size@{size}!CustomShape@{CustomShape}}
+\doxysubsubsection{\texorpdfstring{size}{size}}
+{\footnotesize\ttfamily int Custom\+Shape\+::size\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classCustomShape_ae1d0aea11158b38c142cc0ac0a1813ef}\label{classCustomShape_ae1d0aea11158b38c142cc0ac0a1813ef} 
+\index{CustomShape@{CustomShape}!x@{x}}
+\index{x@{x}!CustomShape@{CustomShape}}
+\doxysubsubsection{\texorpdfstring{x}{x}}
+{\footnotesize\ttfamily int Custom\+Shape\+::x\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classCustomShape_a0c76f6da4a2403c45befa0e253868c9d}\label{classCustomShape_a0c76f6da4a2403c45befa0e253868c9d} 
+\index{CustomShape@{CustomShape}!y@{y}}
+\index{y@{y}!CustomShape@{CustomShape}}
+\doxysubsubsection{\texorpdfstring{y}{y}}
+{\footnotesize\ttfamily int Custom\+Shape\+::y\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{shape_8h}{shape.\+h}}\end{DoxyCompactItemize}

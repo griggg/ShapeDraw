@@ -1,0 +1,9 @@
+<map id="MyView" name="MyView">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,541,197,727"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="23,303,137,369"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="86,382,97,541,92,541,81,382"/>
+<area shape="rect" id="Node000003" href="$classMyStorage.html" title=" " alt="" coords="161,193,369,479"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="189,480,162,528,158,526,184,478"/>
+<area shape="rect" id="Node000004" href="$classIShapeCreator.html" title=" " alt="" coords="195,5,336,131"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="268,131,268,177,263,177,263,131"/>
+</map>
