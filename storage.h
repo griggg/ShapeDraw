@@ -10,13 +10,18 @@
 class MyStorage {
 private: QVector < IShape * > items;
 
-public: string filename; //"C:\\Users\\pvars\\Desktop\\data2.txt";
+public:
+    string filename; //"C:\\Users\\pvars\\Desktop\\data2.txt";
     QGraphicsScene * scene;
+    QGraphicsView *view;
     IShapeCreator * shapeCreator = nullptr;
     // Конструктор
 
     void setShapeCreator(IShapeCreator * shapeCreator) {
         this -> shapeCreator = shapeCreator;
+    }
+
+    MyStorage() {
     }
 
     // Деструктор
@@ -58,8 +63,9 @@ public: string filename; //"C:\\Users\\pvars\\Desktop\\data2.txt";
         this -> addItem(newGroup);
     }
 
-    void setScene(QGraphicsScene * scene) {
-        this -> scene = scene;
+    void setView(QGraphicsView * view) {
+        this -> scene = view->scene();
+        this->view = view;
     }
     virtual IShape * createShape(string type, ifstream & inFile) {
         return nullptr;
@@ -79,7 +85,7 @@ public: string filename; //"C:\\Users\\pvars\\Desktop\\data2.txt";
 
         while (inFile >> s) {
             IShape * newItem;
-            IShapeCreator * shapeCreator = new ShapeCreator(inFile, scene);
+            IShapeCreator * shapeCreator = new ShapeCreator(inFile, view);
 
             shapeCreator -> setType(s);
             newItem = shapeCreator -> createShape();

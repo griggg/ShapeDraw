@@ -64,6 +64,8 @@ public:
 
     MyView(QGraphicsScene * scene, MyStorage * storage,
            QWidget * parent = nullptr): QGraphicsView(scene, parent) {
+
+
         setMouseTracking(true);
         setBackgroundBrush(Qt::black);
         setScene(scene);
@@ -90,8 +92,8 @@ protected:
             IShape * item = storage -> getItem(i);
             if (!item)
                 continue;
-            if (!(item -> isShapeRectInView(this))) {
-                item -> moveInViewBack(this);
+            if (!(item -> isShapeRectInView())) {
+                item -> moveInViewBack();
             }
         }
     }
@@ -256,13 +258,15 @@ private: QPointF lastMousePos;
         if (isItemWillBeInView(newItemRect) == false)
             return;
 
+
         MyCircleItem * newCircle = new MyCircleItem(
-            position.toPoint().x(), position.toPoint().y(), size, nullptr);
+            position.toPoint().x(), position.toPoint().y(), size, this, nullptr);
+
 
         if (newCircle != nullptr) {
             storage -> addItem(newCircle);
             newCircle -> changeColor(color);
-            newCircle -> drawOnScene(this -> scene());
+            newCircle -> draw();
         }
     }
 
@@ -273,11 +277,11 @@ private: QPointF lastMousePos;
             return;
 
         MySquareItem * newSquare = new MySquareItem(
-            position.toPoint().x(), position.toPoint().y(), size, nullptr);
+            position.toPoint().x(), position.toPoint().y(), size, this, nullptr);
 
         if (newSquare != nullptr) {
             newSquare -> changeColor(color);
-            newSquare -> drawOnScene(this -> scene());
+            newSquare -> draw();
             storage -> addItem(newSquare);
         }
     }
@@ -295,7 +299,7 @@ private: QPointF lastMousePos;
         if (newTriangle != nullptr) {
             storage -> addItem(newTriangle);
             newTriangle -> changeColor(color);
-            newTriangle -> drawOnScene(this -> scene());
+            newTriangle -> draw();
         }
     }
 
@@ -311,7 +315,7 @@ private: QPointF lastMousePos;
         if (newLine != nullptr) {
             storage -> addItem(newLine);
             newLine -> changeColor(color);
-            newLine -> drawOnScene(this -> scene());
+            newLine -> draw();
         }
     }
 
@@ -326,7 +330,7 @@ private: QPointF lastMousePos;
 
         if (newTrapezoid != nullptr) {
             storage -> addItem(newTrapezoid);
-            newTrapezoid -> drawOnScene(this -> scene());
+            newTrapezoid -> draw();
             newTrapezoid -> changeColor(color);
         }
     }
@@ -375,7 +379,7 @@ public:
         storage = new MyStorage();
 
         this -> view = new MyView(scene, storage, this);
-        storage -> setScene(scene);
+        storage -> setView(view);
         QSplitter * mainSplitter = new QSplitter(Qt::Vertical, this);
 
         QPushButton * creatingCircles = new QPushButton("Создавать круги", this);

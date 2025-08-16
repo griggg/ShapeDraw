@@ -58,24 +58,24 @@ public: virtual~IShape() {}
     virtual void showSelected() = 0;
 
     virtual void showUnSelected(QColor color) = 0;
-    virtual void drawOnScene(QGraphicsScene * scene) = 0;
+    virtual void draw() = 0;
     virtual bool ismovable() = 0;
 
     virtual void setMovable(bool) = 0;
 
     virtual void removeFromScene() = 0;
-    virtual void move(double difX, double difY, QGraphicsView * view) = 0;
-    virtual void scale(double mlt, QGraphicsView * view) = 0;
-    virtual bool canScale(double mlt, QGraphicsView * view) = 0;
+    virtual void move(double difX, double difY) = 0;
+    virtual void scale(double mlt) = 0;
+    virtual bool canScale(double mlt) = 0;
 
-    virtual bool isShapeRectInView(QGraphicsView * view) = 0;
-    virtual void moveInViewBack(QGraphicsView * view) = 0;
+    virtual bool isShapeRectInView() = 0;
+    virtual void moveInViewBack() = 0;
     virtual bool isFocused(QPointF scenePos) = 0;
 
     virtual void saveToFile(std::ofstream & ) = 0;
     virtual IShape * loadFromFile(std::ifstream & ) = 0;
 
-    virtual bool canMove(double difX, double difY, QGraphicsView * view) = 0;
+    virtual bool canMove(double difX, double difY) = 0;
 
     QColor color;
 };

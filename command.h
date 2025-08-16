@@ -18,10 +18,10 @@ public: MoveCommand(int dx, int dy) {
     void execute(IShape * shape, QGraphicsView * view) {
         this -> shape = shape;
         this -> view = view;
-        shape -> move(dx, dy, view);
+        shape -> move(dx, dy);
     }
     void unexecute() {
-        shape -> move(-dx, -dy, view);
+        shape -> move(-dx, -dy);
     }
     MoveCommand * clone() {
         return new MoveCommand(dx, dy);
@@ -42,10 +42,10 @@ public: ScaleCommand(double coef) {
     void execute(IShape * shape, QGraphicsView * view) {
         this -> shape = shape;
         this -> view = view;
-        shape -> scale(coef, view);
+        shape -> scale(coef);
     }
     void unexecute() {
-        shape -> scale(1 + invertCoef, view);
+        shape -> scale(1 + invertCoef);
     }
     ScaleCommand * clone() {
         return new ScaleCommand(coef);

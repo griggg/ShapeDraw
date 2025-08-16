@@ -37,7 +37,7 @@ public: QGraphicsScene * scene;
         debug("GroupComposite destructor");
     }
 
-    void changeColor(QColor color) {
+    void changeColor(QColor color) override {
         this -> color = color;
         for (auto i: shapes) {
             i -> changeColor(color);
@@ -52,7 +52,7 @@ public: QGraphicsScene * scene;
         this -> shapeCreator = shapeCreator;
     }
 
-    virtual IShape * loadFromFile(ifstream & inFile) {
+    virtual IShape * loadFromFile(ifstream & inFile) override {
         debug("Group loadFromFile");
         if (shapeCreator == nullptr)
             throw runtime_error("Error: GroupComposite::loadFromFile() shapeCreator = nullptr");
@@ -97,13 +97,13 @@ public: QGraphicsScene * scene;
         this -> color = QColor(Qt::blue);
     }
 
-    void saveToFile(ofstream & outFile) {
+    void saveToFile(ofstream & outFile) override {
         outFile << "GROUP" << endl << (int) shapes.count() << endl;
         for (IShape * s: shapes)
             s -> saveToFile(outFile);
     }
 
-    void removeFromScene() {
+    void removeFromScene() override {
         for (IShape * s: shapes)
             s -> removeFromScene();
     }
@@ -113,25 +113,25 @@ public: QGraphicsScene * scene;
             s -> changeSize(rect);
     }
 
-    bool isContains(QPointF p) {
+    bool isContains(QPointF p) override {
         for (IShape * s: shapes)
             if (s -> isContains(p))
                 return true;
         return false;
     }
 
-    void setNewPos(double x, double y) {
+    void setNewPos(double x, double y) override {
         for (IShape * s: shapes)
             s -> setNewPos(x, y);
     }
 
-    virtual void showSelected() {
+    virtual void showSelected() override {
         debug("qqqq");
         for (IShape * s: shapes)
             s -> showSelected();
     }
 
-    virtual void showUnSelected(QColor color) {
+    virtual void showUnSelected(QColor color) override {
         debug("showUnSelected");
         for (IShape * s: shapes) {
             if (s == nullptr)
@@ -141,7 +141,7 @@ public: QGraphicsScene * scene;
         debug("showUnSelected2");
     }
 
-    bool isFocused(QPointF scenePos) {
+    bool isFocused(QPointF scenePos) override {
         bool is = false;
         for (IShape * s: shapes)
             if (s -> isFocused(scenePos))
@@ -149,47 +149,47 @@ public: QGraphicsScene * scene;
         return false;
     }
 
-    virtual bool canScale(double mlt, QGraphicsView * view) {
+    virtual bool canScale(double mlt) override {
         bool can = true;
         for (IShape * s: shapes) {
-            can = can && s -> canScale(mlt, view);
+            can = can && s -> canScale(mlt);
         }
         return can;
     }
 
-    void scale(double mlt, QGraphicsView * view) {
-        if (canScale(mlt, view) == false)
+    void scale(double mlt) override {
+        if (canScale(mlt) == false)
             return;
         for (IShape * s: shapes) {
-            s -> scale(mlt, view);
+            s -> scale(mlt);
         }
     }
 
-    bool isShapeRectInView(QGraphicsView * view) {
+    bool isShapeRectInView() override {
 
         for (IShape * s: shapes)
-            if (s -> isShapeRectInView(view) == false)
+            if (s -> isShapeRectInView() == false)
                 return false;
         return true;
     }
 
-    bool canMove(double difX, double difY, QGraphicsView * view) {
+    bool canMove(double difX, double difY) override {
         for (IShape * shape: shapes) {
-            if (shape -> canMove(difX, difY, view) == false)
+            if (shape -> canMove(difX, difY) == false)
                 return false;
         }
         return true;
     }
 
-    void move(double difX, double difY, QGraphicsView * view) override {
-        if (canMove(difX, difY, view) == false)
+    void move(double difX, double difY) override {
+        if (canMove(difX, difY) == false)
             return;
         for (IShape * shape: shapes) {
-            shape -> move(difX, difY, view);
+            shape -> move(difX, difY);
         }
     }
 
-    void setMovable(bool val) {
+    void setMovable(bool val) override{
         debug("Group setMovable start");
         this -> movable = val;
         for (IShape * s: shapes)
@@ -197,19 +197,19 @@ public: QGraphicsScene * scene;
         debug("Group setMovable success");
     }
 
-    void drawOnScene(QGraphicsScene * scene) {
+    void draw() override {
         for (IShape * s: shapes) {
-            s -> drawOnScene(scene);
+            s -> draw();
         }
     }
 
-    bool ismovable() {
+    bool ismovable() override {
         return this -> movable;
     }
 
-    void moveInViewBack(QGraphicsView * view) {
+    void moveInViewBack() override {
         for (IShape * s: shapes)
-            s -> moveInViewBack(view);
+            s -> moveInViewBack();
     }
 
 private: bool movable;
@@ -225,8 +225,21 @@ protected: int size;
     int x;
     int y;
 
-public: QGraphicsScene * scene;
+public:
+    QGraphicsScene * scene = nullptr;
+    QGraphicsView *view = nullptr;
     QColor color;
+
+    CustomShape(int posX, int posY, int size, QGraphicsView* view, QGraphicsItem * parent = nullptr): QAbstractGraphicsShapeItem(parent) {
+        setAcceptHoverEvents(true);
+        this -> size = size;
+        this -> movable = false;
+        this->view = view;
+        this->scene = view->scene();
+        x = posX;
+        y = posY;
+        // this->color = QColor(Qt::blue);
+    }
 
     virtual CustomShape * clone() {
         return nullptr;
@@ -248,15 +261,6 @@ public: QGraphicsScene * scene;
 
     virtual string getType() {
         return "";
-    }
-
-    CustomShape(int posX, int posY, int size, QGraphicsItem * parent = nullptr): QAbstractGraphicsShapeItem(parent) {
-        setAcceptHoverEvents(true);
-        this -> size = size;
-        this -> movable = false;
-        x = posX;
-        y = posY;
-        // this->color = QColor(Qt::blue);
     }
 
     void removeFromScene() override{
@@ -292,14 +296,14 @@ public: QGraphicsScene * scene;
         this -> setPen(QPen(color));
     }
 
-    bool isFocused(QPointF scenePos) {
+    bool isFocused(QPointF scenePos) override {
         QPointF localPos = this -> getMapFromScene(scenePos);
         if (this -> isContains(localPos))
             debug("BBBBBBBBBBBBBBBBBBBBBBBBB");
         return this -> isContains(localPos);
     }
 
-    virtual bool canScale(double mlt, QGraphicsView * view) {
+    virtual bool canScale(double mlt ) override {
         QAbstractGraphicsShapeItem * item2 =
             dynamic_cast < QAbstractGraphicsShapeItem * > (this);
         if (!item2)
@@ -326,12 +330,12 @@ public: QGraphicsScene * scene;
         return false;
     }
 
-    void scale(double mlt, QGraphicsView * view) {
+    void scale(double mlt) override {
         QAbstractGraphicsShapeItem * item2 =
             dynamic_cast < QAbstractGraphicsShapeItem * > (this);
         if (!item2)
             return;
-        if (canScale(mlt, view) == false)
+        if (canScale(mlt) == false)
             return;
 
         QRectF newRect = this -> getRect();
@@ -344,7 +348,7 @@ public: QGraphicsScene * scene;
         this -> update();
     }
 
-    bool isShapeRectInView(QGraphicsView * view) {
+    bool isShapeRectInView() override {
         // после создания Shape вызывается перед тем как изменить положение
         // фигуры
 
@@ -354,7 +358,7 @@ public: QGraphicsScene * scene;
         return viewRect.contains(this -> sceneBoundingRect());
     }
 
-    bool canMove(double difX, double difY, QGraphicsView * view) {
+    bool canMove(double difX, double difY) override {
         QRectF itemRect = this -> mapRectToScene(this -> boundingRect());
         QRectF newItemRect = itemRect.translated(difX, difY);
 
@@ -364,7 +368,7 @@ public: QGraphicsScene * scene;
         return viewRect.contains(newItemRect);
     }
 
-    void move(double difX, double difY, QGraphicsView * view) {
+    void move(double difX, double difY) override {
         QRectF itemRect = this -> mapRectToScene(this -> boundingRect());
         QRectF newItemRect = itemRect.translated(difX, difY);
 
@@ -378,13 +382,13 @@ public: QGraphicsScene * scene;
         }
     }
 
-    void setMovable(bool val) {
+    void setMovable(bool val) override {
         debug("aaaa");
         this -> movable = val;
         debug("aaaa 2");
     }
 
-    void drawOnScene(QGraphicsScene * scene) {
+    void draw() override {
         debug("BBB");
         scene -> addItem(this);
 
@@ -394,29 +398,31 @@ public: QGraphicsScene * scene;
         double w = rect.width();
         double h = rect.height();
         this -> setPos(x, y);
-        this -> scene = scene;
     }
 
-    bool ismovable() {
+    bool ismovable() override {
         return this -> movable;
     }
 
-    void moveInViewBack(QGraphicsView * view) {
+    void moveInViewBack() override {
         QRectF itemRect = this -> sceneBoundingRect();
         QRectF viewRect =
             view -> mapToScene(view -> viewport() -> rect()).boundingRect();
-        this -> move(0.0f, -abs(viewRect.bottom() - itemRect.bottom()), view);
+        this -> move(0.0f, -abs(viewRect.bottom() - itemRect.bottom()));
     }
 
 private: bool movable;
 };
 
 class MyCircleItem: public CustomShape {
-public: string getType() {
+public:
+    string getType() override {
         return "Circle";
     }
-    MyCircleItem(int posX, int posY, int size, QGraphicsItem * parent = nullptr): CustomShape(posX, posY, size, parent) {
+    MyCircleItem(int posX, int posY, int size, QGraphicsView* view,
+                 QGraphicsItem * parent = nullptr): CustomShape(posX, posY, size, view, parent) {
         setAcceptHoverEvents(true);
+
     }
 
     QRectF boundingRect() const override {
@@ -431,7 +437,7 @@ public: string getType() {
         painter -> drawEllipse(boundingRect());
     }
 
-    IShape * loadFromFile(ifstream & inFile) {
+    IShape * loadFromFile(ifstream & inFile) override {
         debug("111");
         int r, g, b;
         inFile >> r >> g >> b;
@@ -446,10 +452,12 @@ public: string getType() {
 };
 
 class MySquareItem: public CustomShape {
-public: string getType() {
+public:
+    string getType() override {
         return "Square";
     }
-    MySquareItem(int posX, int posY, int size, QGraphicsItem * parent = nullptr): CustomShape(posX, posY, size, parent) {
+    MySquareItem(int posX, int posY, int size,
+                 QGraphicsView* view, QGraphicsItem * parent = nullptr): CustomShape(posX, posY, size, view, parent) {
         setAcceptHoverEvents(true);
     }
 
@@ -465,7 +473,7 @@ public: string getType() {
         painter -> drawRect(boundingRect());
     }
 
-    IShape * loadFromFile(ifstream & inFile) {
+    IShape * loadFromFile(ifstream & inFile) override {
         int r, g, b;
         inFile >> r >> g >> b;
         int x, y, size;
@@ -479,11 +487,12 @@ public: string getType() {
 };
 
 class MyTriangleItem: public CustomShape {
-public: string getType() {
+public:
+    string getType() override {
         return "Triangle";
     }
-    MyTriangleItem(int posX, int posY, int size,
-                   QGraphicsItem * parent = nullptr): CustomShape(posX, posY, size, parent) {
+    MyTriangleItem(int posX, int posY, int size, QGraphicsView* view,
+                   QGraphicsItem * parent = nullptr): CustomShape(posX, posY, size, view, parent) {
         setAcceptHoverEvents(true);
     }
 
@@ -501,7 +510,7 @@ public: string getType() {
         painter -> setPen(this -> pen());
         painter -> drawPolygon(polygon);
     }
-    IShape * loadFromFile(ifstream & inFile) {
+    IShape * loadFromFile(ifstream & inFile) override {
         int r, g, b;
         inFile >> r >> g >> b;
         int x, y, size;
@@ -516,11 +525,12 @@ public: string getType() {
 
 // Класс для линий
 class MyLineItem: public CustomShape {
-public: string getType() {
+public: string getType() override {
         return "Line";
     }
 
-    MyLineItem(int posX, int posY, int size, QGraphicsItem * parent = nullptr): CustomShape(posX, posY, size, parent) {
+    MyLineItem(int posX, int posY, int size, QGraphicsView* view,
+               QGraphicsItem * parent = nullptr): CustomShape(posX, posY, size, view, parent) {
         setAcceptHoverEvents(true);
     }
 
@@ -531,7 +541,7 @@ public: string getType() {
         return QRectF(-padding, -size / 2.0 - 1, 2 * padding, size + 2);
     }
 
-    virtual void changeSize(QRectF rect) {
+    virtual void changeSize(QRectF rect) override {
         this -> size = rect.height();
     }
 
@@ -544,15 +554,15 @@ public: string getType() {
         painter -> drawLine(0, -size / 2, 0, size / 2);
     }
 
-    void showSelected() {
+    void showSelected() override {
         // this->setBrush(QBrush(Qt::red));
         this -> setPen(QPen(Qt::red, 5));
     }
 
-    void showUnSelected(QColor color) {
+    void showUnSelected(QColor color) override {
         this -> setPen(QPen(color, 5));
     }
-    IShape * loadFromFile(ifstream & inFile) {
+    IShape * loadFromFile(ifstream & inFile) override {
         int r, g, b;
         inFile >> r >> g >> b;
         int x, y, size;
@@ -566,12 +576,13 @@ public: string getType() {
 };
 
 class MyTrapezoidItem: public CustomShape {
-public: string getType() {
+public:
+    string getType() override {
         return "Trapezoid";
     }
 
-    MyTrapezoidItem(int posX, int posY, int size,
-                    QGraphicsItem * parent = nullptr): CustomShape(posX, posY, size, parent) {
+    MyTrapezoidItem(int posX, int posY, int size, QGraphicsView* view,
+                    QGraphicsItem * parent = nullptr): CustomShape(posX, posY, size, view, parent) {
         this -> height = size;
         setAcceptHoverEvents(true);
         this -> height = height;
@@ -603,7 +614,7 @@ public: string getType() {
         painter -> setPen(this -> pen());
         painter -> drawPolygon(polygon);
     }
-    IShape * loadFromFile(ifstream & inFile) {
+    IShape * loadFromFile(ifstream & inFile) override  {
         int r, g, b;
         inFile >> r >> g >> b;
         int x, y, size;
@@ -624,9 +635,12 @@ class ShapeCreator: public IShapeCreator {
 private: string type = "None";
     ifstream * inFile = nullptr;
     QGraphicsScene * scene = nullptr;
-public: ShapeCreator(ifstream & inFile, QGraphicsScene * scene) {
+    QGraphicsView *view = nullptr;
+
+public: ShapeCreator(ifstream & inFile, QGraphicsView * view) {
         this -> inFile = & inFile;
-        this -> scene = scene;
+        this -> scene = view->scene();
+        this->view = view;
     }
     void setType(string type) {
         this -> type = type;
@@ -641,15 +655,15 @@ public: ShapeCreator(ifstream & inFile, QGraphicsScene * scene) {
         debug(type + "type");
         qDebug() << type << " " << ": loadFromFile debug2" << Qt::endl;
         if (type == "Circle") {
-            shape = new MyCircleItem(0, 0, 0);
+            shape = new MyCircleItem(0, 0, 0, view);
         } else if (type == "Square") {
-            shape = new MySquareItem(0, 0, 0);
+            shape = new MySquareItem(0, 0, 0, view);
         } else if (type == "Line") {
-            shape = new MyLineItem(0, 0, 0);
+            shape = new MyLineItem(0, 0, 0, view);
         } else if (type == "Trapezoid") {
-            shape = new MyTrapezoidItem(0, 0, 0);
+            shape = new MyTrapezoidItem(0, 0, 0, view);
         } else if (type == "Triangle") {
-            shape = new MyTriangleItem(0, 0, 0);
+            shape = new MyTriangleItem(0, 0, 0, view);
         } else if (type == "GROUP") {
             GroupComposite * group = new GroupComposite({}, scene);
             group -> setShapeCreator(this);
@@ -659,7 +673,7 @@ public: ShapeCreator(ifstream & inFile, QGraphicsScene * scene) {
         debug("QQQ");
         shape -> loadFromFile( * inFile);
 
-        shape -> drawOnScene(scene);
+        shape -> draw();
 
         return shape;
     }
