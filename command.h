@@ -1,7 +1,7 @@
 #ifndef COMMAND_H
 #define COMMAND_H
 
-#include "shape.h"
+#include "IShape.h"
 #include "ICommand.h"
 
 
@@ -15,9 +15,7 @@ public: MoveCommand(int dx, int dy) {
         this -> dx = dx;
         this -> dy = dy;
     }
-    void execute(IShape * shape, QGraphicsView * view) {
-        this -> shape = shape;
-        this -> view = view;
+    void execute(IShape * shape) {
         shape -> move(dx, dy);
     }
     void unexecute() {
@@ -35,13 +33,12 @@ private: IShape * shape;
     double invertCoef;
     QGraphicsView * view;
 
-public: ScaleCommand(double coef) {
+public:
+    ScaleCommand(double coef) {
         this -> coef = coef;
         this -> invertCoef = 1 - coef;
     }
-    void execute(IShape * shape, QGraphicsView * view) {
-        this -> shape = shape;
-        this -> view = view;
+    void execute(IShape * shape) {
         shape -> scale(coef);
     }
     void unexecute() {

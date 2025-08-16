@@ -115,7 +115,7 @@ protected:
                 if (!item)
                     continue;
                 ICommand * scaleCommand = new ScaleCommand(1.15);
-                scaleCommand -> execute(item, this);
+                scaleCommand -> execute(item);
                 commandsHistory.push(scaleCommand);
                 update();
             }
@@ -127,7 +127,7 @@ protected:
                 if (!item)
                     continue;
                 ICommand * scaleCommand = new ScaleCommand(0.85);
-                scaleCommand -> execute(item, this);
+                scaleCommand -> execute(item);
                 commandsHistory.push(scaleCommand);
                 update();
             }
@@ -139,7 +139,7 @@ protected:
                     if (item) {
                         moveCommand = new MoveCommand(0, -delta);
                         // item->move(0, -delta, this);
-                        moveCommand -> execute(item, this);
+                        moveCommand -> execute(item);
                         commandsHistory.push(moveCommand);
                     }
                 }
@@ -150,7 +150,7 @@ protected:
                 for (IShape * item: storage -> getSelectedItems()) {
                     if (item) {
                         moveCommand = new MoveCommand(0, delta);
-                        moveCommand -> execute(item, this);
+                        moveCommand -> execute(item);
                         commandsHistory.push(moveCommand);
                     }
                 }
@@ -161,7 +161,7 @@ protected:
                 for (IShape * item: storage -> getSelectedItems()) {
                     if (item) {
                         moveCommand = new MoveCommand(-delta, 0);
-                        moveCommand -> execute(item, this);
+                        moveCommand -> execute(item);
                         commandsHistory.push(moveCommand);
                     }
                 }
@@ -172,7 +172,7 @@ protected:
                 for (IShape * item: storage -> getSelectedItems()) {
                     if (item) {
                         moveCommand = new MoveCommand(delta, 0);
-                        moveCommand -> execute(item, this);
+                        moveCommand -> execute(item);
                         commandsHistory.push(moveCommand);
                     }
                 }
