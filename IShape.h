@@ -43,10 +43,6 @@
 
 #include <fstream>
 
-#include <stack>
-
-#include <vector>
-
 class IShape {
 public: virtual~IShape() {}
     virtual void changeSize(QRectF) = 0;

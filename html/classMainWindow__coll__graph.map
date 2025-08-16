@@ -1,9 +1,0 @@
-<map id="MainWindow" name="MainWindow">
-<area shape="rect" id="Node000001" title=" " alt="" coords="14,541,147,627"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,303,113,369"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="66,382,80,541,74,541,61,383"/>
-<area shape="rect" id="Node000003" href="$classMyStorage.html" title=" " alt="" coords="138,193,346,479"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="151,480,119,529,115,526,147,478"/>
-<area shape="rect" id="Node000004" href="$classIShapeCreator.html" title=" " alt="" coords="171,5,313,131"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="245,131,245,177,239,177,239,131"/>
-</map>

@@ -1,7 +1,0 @@
-<map id="ICommand" name="ICommand">
-<area shape="rect" id="Node000001" title=" " alt="" coords="109,5,231,131"/>
-<area shape="rect" id="Node000002" href="$classMoveCommand.html" title=" " alt="" coords="5,179,159,324"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="136,144,119,180,114,177,132,142"/>
-<area shape="rect" id="Node000003" href="$classScaleCommand.html" title=" " alt="" coords="183,179,335,324"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="209,142,226,177,222,180,204,144"/>
-</map>
