@@ -24,6 +24,7 @@ ItemType strToItemType(string type) {
     if (type == "Line") return ItemType::LINE;
     if (type == "Trapezoid") return ItemType::TRPZD;
     if (type == "Square") return ItemType::SQUARE;
+
 }
 
 class GroupComposite: public IShape {
@@ -394,20 +395,14 @@ public:
     }
 
     void setMovable(bool val) override {
-        debug("aaaa");
         this -> movable = val;
-        debug("aaaa 2");
     }
 
     void draw() override {
-        debug("BBB");
         scene -> addItem(this);
 
         changeColor(this -> color);
 
-        QRectF rect = this -> getRect();
-        double w = rect.width();
-        double h = rect.height();
         this -> setPos(x, y);
         this->prepareGeometryChange();
         this -> update();

@@ -134,7 +134,6 @@ protected:
         }
         ICommand * moveCommand = nullptr;
         if (event -> key() == Qt::Key_W) {
-            for (IShape * item: storage -> getSelectedItems()) {
                 for (IShape * item: storage -> getSelectedItems()) {
                     if (item) {
                         moveCommand = new MoveCommand(0, -delta);
@@ -143,10 +142,8 @@ protected:
                         commandsHistory.push(moveCommand);
                     }
                 }
-            }
         }
         if (event -> key() == Qt::Key_S) {
-            for (IShape * item: storage -> getSelectedItems()) {
                 for (IShape * item: storage -> getSelectedItems()) {
                     if (item) {
                         moveCommand = new MoveCommand(0, delta);
@@ -154,10 +151,9 @@ protected:
                         commandsHistory.push(moveCommand);
                     }
                 }
-            }
         }
         if (event -> key() == Qt::Key_A) {
-            for (IShape * item: storage -> getSelectedItems()) {
+
                 for (IShape * item: storage -> getSelectedItems()) {
                     if (item) {
                         moveCommand = new MoveCommand(-delta, 0);
@@ -165,7 +161,6 @@ protected:
                         commandsHistory.push(moveCommand);
                     }
                 }
-            }
         }
         if (event -> key() == Qt::Key_D) {
 
@@ -199,9 +194,7 @@ protected:
 
 
         if (event -> button() == Qt::RightButton) {
-            IShape* shape = ShapeCreator::shapeByStr(itemMode, this, scenePos, size);
-            if (shape==nullptr) debug("555");
-            addShape(scenePos, shape);
+            addShape(scenePos);
         }
 
         if (event -> button() == Qt::LeftButton) {
@@ -241,13 +234,16 @@ private: QPointF lastMousePos;
         return viewRect.contains(itemRect);
     }
 
-    void addShape(const QPointF& position, IShape* shape) {
+    void addShape(const QPointF& position) {
 
         QRect newItemRect =
             QRect(position.toPoint().x(), position.toPoint().y(), size, size);
 
         if (isItemWillBeInView(newItemRect) == false)
             return;
+
+        IShape* shape = ShapeCreator::shapeByStr(itemMode, this, position, size);
+        if (shape==nullptr) debug("555");
 
         if (shape != nullptr) {
             storage -> addItem(shape);
