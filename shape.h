@@ -18,6 +18,14 @@ enum ItemType {
     TRNGL = 0, CRCL = 1, LINE = 2, TRPZD = 3, SQUARE = 4
 };
 
+ItemType strToItemType(string type) {
+    if (type == "Triangle") return ItemType::TRNGL;
+    if (type == "Circle") return ItemType::CRCL;
+    if (type == "Line") return ItemType::LINE;
+    if (type == "Trapezoid") return ItemType::TRPZD;
+    if (type == "Square") return ItemType::SQUARE;
+}
+
 class GroupComposite: public IShape {
 protected: int size;
     int x;
@@ -272,7 +280,10 @@ public:
     }
 
     virtual void changeSize(QRectF rect) override {
+        prepareGeometryChange();
         size = rect.height();
+        this->prepareGeometryChange();
+        this -> update();
     }
 
     QPointF getMapFromScene(QPointF pos) {
@@ -398,6 +409,8 @@ public:
         double w = rect.width();
         double h = rect.height();
         this -> setPos(x, y);
+        this->prepareGeometryChange();
+        this -> update();
     }
 
     bool ismovable() override {
@@ -585,7 +598,6 @@ public:
                     QGraphicsItem * parent = nullptr): CustomShape(posX, posY, size, view, parent) {
         this -> height = size;
         setAcceptHoverEvents(true);
-        this -> height = height;
         this -> size = size;
     }
 
@@ -637,7 +649,8 @@ private: string type = "None";
     QGraphicsScene * scene = nullptr;
     QGraphicsView *view = nullptr;
 
-public: ShapeCreator(ifstream & inFile, QGraphicsView * view) {
+public:
+    ShapeCreator(ifstream & inFile, QGraphicsView * view) {
         this -> inFile = & inFile;
         this -> scene = view->scene();
         this->view = view;
@@ -648,28 +661,43 @@ public: ShapeCreator(ifstream & inFile, QGraphicsView * view) {
     void setInFile(ifstream & inFile) {
         this -> inFile = & inFile;
     }
+    static IShape* shapeByStr(ItemType type, QGraphicsView* view, const QPointF & position, int size) {
+        IShape * shape = nullptr;
+        if (type == ItemType::CRCL) {
+            shape = new MyCircleItem(
+                position.toPoint().x(), position.toPoint().y(), size, view);
+        } else if (type == ItemType::SQUARE) {
+            shape = new MySquareItem(
+                position.toPoint().x(), position.toPoint().y(), size, view);
+        } else if (type == ItemType::LINE) {
+            shape = new MyLineItem(
+                position.toPoint().x(), position.toPoint().y(), size, view);
+        } else if (type == ItemType::TRPZD) {
+            shape = new MyTrapezoidItem(
+                position.toPoint().x(), position.toPoint().y(), size, view);
+        } else if (type == ItemType::TRNGL) {
+            shape = new MyTriangleItem(
+                position.toPoint().x(), position.toPoint().y(), size, view);
+        } //else  можем ли мы восстановить состояние, имеет ли смысл кидать ошибку
+            //throw runtime_error("does not exit this type of shape " + type);
+        return shape;
+    }
+
     IShape * createShape() {
         IShape * shape = nullptr;
         if (scene == nullptr)
             throw runtime_error("ShapeCreator::createShape() scene = nullptr");
         debug(type + "type");
         qDebug() << type << " " << ": loadFromFile debug2" << Qt::endl;
-        if (type == "Circle") {
-            shape = new MyCircleItem(0, 0, 0, view);
-        } else if (type == "Square") {
-            shape = new MySquareItem(0, 0, 0, view);
-        } else if (type == "Line") {
-            shape = new MyLineItem(0, 0, 0, view);
-        } else if (type == "Trapezoid") {
-            shape = new MyTrapezoidItem(0, 0, 0, view);
-        } else if (type == "Triangle") {
-            shape = new MyTriangleItem(0, 0, 0, view);
-        } else if (type == "GROUP") {
+
+        if (type == "GROUP") {
             GroupComposite * group = new GroupComposite({}, scene);
             group -> setShapeCreator(this);
             shape = group;
-        } else
-            throw runtime_error("does not exit this type of shape " + type);
+        } else {
+            shape = ShapeCreator::shapeByStr(strToItemType(type), view, QPointF(0, 0), 0);
+        }
+
         debug("QQQ");
         shape -> loadFromFile( * inFile);
 

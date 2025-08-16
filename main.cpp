@@ -74,7 +74,7 @@ public:
         this -> storage = storage;
     }
 
-    void setItemMode(std::string mode) {
+    void setItemMode(ItemType mode) {
         this -> itemMode = mode;
     }
 
@@ -168,7 +168,7 @@ protected:
             }
         }
         if (event -> key() == Qt::Key_D) {
-            for (IShape * item: storage -> getSelectedItems()) {
+
                 for (IShape * item: storage -> getSelectedItems()) {
                     if (item) {
                         moveCommand = new MoveCommand(delta, 0);
@@ -176,7 +176,7 @@ protected:
                         commandsHistory.push(moveCommand);
                     }
                 }
-            }
+
         }
         if (event -> key() == Qt::Key_Z && controlPressed) {
             if (!(commandsHistory.empty())) {
@@ -197,22 +197,11 @@ protected:
     void mousePressEvent(QMouseEvent * event) override {
         QPointF scenePos = mapToScene(event -> pos());
 
+
         if (event -> button() == Qt::RightButton) {
-            if (this -> itemMode == "Круг") {
-                addCircle(scenePos);
-            }
-            if (this -> itemMode == "Квадрат") {
-                addRect(scenePos);
-            }
-            if (this -> itemMode == "Треугольник") {
-                addTriangle(scenePos);
-            }
-            if (this -> itemMode == "Линия") {
-                addLine(scenePos);
-            }
-            if (this -> itemMode == "Трапеция") {
-                addTrapezoid(scenePos);
-            }
+            IShape* shape = ShapeCreator::shapeByStr(itemMode, this, scenePos, size);
+            if (shape==nullptr) debug("555");
+            addShape(scenePos, shape);
         }
 
         if (event -> button() == Qt::LeftButton) {
@@ -238,7 +227,7 @@ protected:
     }
 
 private: QPointF lastMousePos;
-    std::string itemMode = "Круг";
+    ItemType itemMode = ItemType::CRCL;
     double size = 50;
     stack < ICommand * > commandsHistory;
 
@@ -252,86 +241,21 @@ private: QPointF lastMousePos;
         return viewRect.contains(itemRect);
     }
 
-    void addCircle(const QPointF & position) {
+    void addShape(const QPointF& position, IShape* shape) {
+
         QRect newItemRect =
             QRect(position.toPoint().x(), position.toPoint().y(), size, size);
+
         if (isItemWillBeInView(newItemRect) == false)
             return;
 
+        if (shape != nullptr) {
+            storage -> addItem(shape);
+            shape->setNewPos(position.toPoint().x(), position.toPoint().y());
+            shape->changeSize(newItemRect);
+            shape -> changeColor(color);
+            shape -> draw();
 
-        MyCircleItem * newCircle = new MyCircleItem(
-            position.toPoint().x(), position.toPoint().y(), size, this, nullptr);
-
-
-        if (newCircle != nullptr) {
-            storage -> addItem(newCircle);
-            newCircle -> changeColor(color);
-            newCircle -> draw();
-        }
-    }
-
-    void addRect(const QPointF & position) {
-        QRect newItemRect =
-            QRect(position.toPoint().x(), position.toPoint().y(), size, size);
-        if (isItemWillBeInView(newItemRect) == false)
-            return;
-
-        MySquareItem * newSquare = new MySquareItem(
-            position.toPoint().x(), position.toPoint().y(), size, this, nullptr);
-
-        if (newSquare != nullptr) {
-            newSquare -> changeColor(color);
-            newSquare -> draw();
-            storage -> addItem(newSquare);
-        }
-    }
-
-    void addTriangle(const QPointF & position) {
-        QRect newItemRect =
-            QRect(position.toPoint().x(), position.toPoint().y(), size, size);
-        if (isItemWillBeInView(newItemRect) == false)
-            return;
-
-        MyTriangleItem * newTriangle = new MyTriangleItem(
-            position.toPoint().x(), position.toPoint().y(), size, nullptr);
-
-        // [!] Добавляем новый элемент в наш storage
-        if (newTriangle != nullptr) {
-            storage -> addItem(newTriangle);
-            newTriangle -> changeColor(color);
-            newTriangle -> draw();
-        }
-    }
-
-    void addLine(const QPointF & position) {
-        QRect newItemRect =
-            QRect(position.toPoint().x(), position.toPoint().y(), size, size);
-        if (isItemWillBeInView(newItemRect) == false)
-            return;
-
-        MyLineItem * newLine = new MyLineItem(
-            position.toPoint().x(), position.toPoint().y(), size, nullptr);
-
-        if (newLine != nullptr) {
-            storage -> addItem(newLine);
-            newLine -> changeColor(color);
-            newLine -> draw();
-        }
-    }
-
-    void addTrapezoid(const QPointF & position) {
-        QRect newItemRect =
-            QRect(position.toPoint().x(), position.toPoint().y(), size, size);
-        if (isItemWillBeInView(newItemRect) == false)
-            return;
-
-        MyTrapezoidItem * newTrapezoid = new MyTrapezoidItem(
-            position.toPoint().x(), position.toPoint().y(), size, nullptr);
-
-        if (newTrapezoid != nullptr) {
-            storage -> addItem(newTrapezoid);
-            newTrapezoid -> draw();
-            newTrapezoid -> changeColor(color);
         }
     }
 
@@ -385,14 +309,14 @@ public:
         QPushButton * creatingCircles = new QPushButton("Создавать круги", this);
         connect(creatingCircles, & QPushButton::clicked,
                 [this]() {
-                    this -> view -> setItemMode("Круг");
+                    this -> view -> setItemMode(ItemType::CRCL);
                 });
 
         QPushButton * creatingRects =
             new QPushButton("Создавать квадраты", this);
         connect(creatingRects, & QPushButton::clicked,
                 [this]() {
-                    this -> view -> setItemMode("Квадрат");
+                    this -> view -> setItemMode(ItemType::SQUARE);
                 });
 
         QPushButton * selectColor = new QPushButton("Выбрать цвет", this);
@@ -405,20 +329,20 @@ public:
             new QPushButton("Создавать треугольники", this);
         connect(creatingTriangles, & QPushButton::clicked,
                 [this]() {
-                    this -> view -> setItemMode("Треугольник");
+                    this -> view -> setItemMode(ItemType::TRNGL);
                 });
 
         QPushButton * creatingLines = new QPushButton("Создавать линии", this);
         connect(creatingLines, & QPushButton::clicked,
                 [this]() {
-                    this -> view -> setItemMode("Линия");
+                    this -> view -> setItemMode(ItemType::LINE);
                 });
 
         QPushButton * creatingTrapezoids =
             new QPushButton("Создавать Трапеции", this);
         connect(creatingTrapezoids, & QPushButton::clicked,
                 [this]() {
-                    this -> view -> setItemMode("Трапеция");
+                    this -> view -> setItemMode(ItemType::TRPZD);
                 });
 
         // fileLabel = new QLabel("Текущий файл: Нет", this);
@@ -437,17 +361,21 @@ public:
 
                 });
 
-        QPushButton * saveToFile =
-            new QPushButton("Сохранить", this);
-        connect(saveToFile, & QPushButton::clicked,
-                [this]() {
-                    QString filename = QFileDialog::getOpenFileName(
-                        this, tr("Открыть текстовый файл"), "",
-                        tr("Текстовые файлы (*.txt);;Все файлы (*.*)"));
-                    storage -> filename = filename.toStdString();
-                    // fileLabel->setText("Текущий файл " + filename);
-                    storage -> save();
-                });
+        QPushButton * saveToFile = new QPushButton("Сохранить", this);
+        connect(saveToFile, &QPushButton::clicked, [this]() {
+            QString filename = QFileDialog::getSaveFileName(
+                this,
+                tr("Сохранить файл"),
+                "",
+                tr("Текстовые файлы (*.txt);;Все файлы (*.*)")
+                );
+            if (!filename.isEmpty()) {  // Проверяем, что пользователь не отменил диалог
+                storage->filename = filename.toStdString();
+                storage->save();
+                // Можно обновить метку с именем файла, если есть:
+                // fileLabel->setText("Текущий файл: " + filename);
+            }
+        });
 
         QPushButton * clearShapes =
             new QPushButton("Удалить все фигуры с рабочей области", this);
