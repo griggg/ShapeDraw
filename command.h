@@ -17,12 +17,10 @@ public: MoveCommand(int dx, int dy) {
         this -> dy = dy;
     }
     void execute(IShape * shape) {
+        this->shape = shape;
         shape -> move(dx, dy);
     }
     void unexecute() {
-        if(shape == nullptr) {
-            debug("иди нахуй");
-        }
         shape -> move(-dx, -dy);
 
     }
