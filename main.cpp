@@ -21,13 +21,14 @@
 #include <fstream>
 #include <stack>
 #include <vector>
-#include <QTreeView>
+// #include <MyTreeView>
 
 #include "./ui_mainwindow.h"
 #include "command.h"
 #include "shape.h"
 #include "storage.h"
 #include "shapetreemodel.h"
+#include "mytreeview.h"
 
 class MyView : public QGraphicsView {
 public:
@@ -221,12 +222,18 @@ private:
       debug("555");
 
     if (shape != nullptr) {
-      storage->addItem(shape);
+
       shape->setNewPos(position.toPoint().x(), position.toPoint().y());
       shape->changeSize(newItemRect);
       shape->changeColor(color);
       shape->draw();
-      m_shapeTreeModel->refresh();
+      // m_shapeTreeModel->refresh();
+      CustomShape* customShape = dynamic_cast<CustomShape*>(shape);
+      if (customShape) {
+        connect(customShape, &CustomShape::shapeChanged, m_shapeTreeModel, &ShapeTreeModel::refresh);
+
+      }
+      storage->addItem(shape);
     }
   }
 
@@ -271,7 +278,7 @@ public:
 
 
     m_shapeTreeModel = new ShapeTreeModel(storage, this);
-    m_treeView = new QTreeView(this);
+    m_treeView = new MyTreeView(this);
     m_treeView->setModel(m_shapeTreeModel);
 
 
@@ -367,7 +374,7 @@ private:
   QLabel *fileLabel;
   MyView *view;
   ShapeTreeModel *m_shapeTreeModel;
-  QTreeView *m_treeView;
+  MyTreeView *m_treeView;
 };
 
 // Точка входа

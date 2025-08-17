@@ -28,12 +28,17 @@ public:
   int rowCount(const QModelIndex &parent = QModelIndex()) const override;
   int columnCount(const QModelIndex &parent = QModelIndex()) const override;
 
+  void onFigureAdded(CustomShape* shape);
+
   void setStorage(MyStorage *storage);
-  void refresh();
+
 
 private:
   MyStorage *m_storage;
   const IShape *getItem(const QModelIndex &index) const;
+
+public slots:
+  void refresh();
 };
 
 #endif // SHAPETREEMODEL_H

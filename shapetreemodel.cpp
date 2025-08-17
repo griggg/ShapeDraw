@@ -151,6 +151,8 @@ int ShapeTreeModel::columnCount(const QModelIndex &parent) const
   return 2; // Две колонки: имя и позиция
 }
 
+
+
 const IShape *ShapeTreeModel::getItem(const QModelIndex &index) const
 {
   if (!index.isValid())

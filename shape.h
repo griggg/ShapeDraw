@@ -253,7 +253,10 @@ private:
 // Везде с интерфейсами а не с конкретными работать
 // разбить на файлы
 
-class CustomShape : protected QAbstractGraphicsShapeItem, public IShape {
+class CustomShape : public QObject, protected QAbstractGraphicsShapeItem, public IShape {
+   Q_OBJECT
+
+
 protected:
   int size;
   int x;
@@ -368,14 +371,15 @@ public:
     if (canScale(mlt) == false)
       return;
 
-    QRectF newRect = this->getRect();
+    QRectF newRect = getRect();
     newRect.setHeight(newRect.height() * mlt);
     newRect.setWidth(newRect.width() * mlt);
 
-    this->changeSize(newRect);
+    changeSize(newRect);
 
     prepareGeometryChange();
-    this->update();
+    update();
+    shapeChanged();
   }
 
   bool isShapeRectInView() override {
@@ -406,6 +410,7 @@ public:
       this->setPos(this->pos() + QPointF(difX, difY));
       this->x += difX;
       this->y += difY;
+      emit shapeChanged();
     }
 
     // debug("228");
@@ -433,6 +438,10 @@ public:
 
 private:
   bool movable;
+
+signals:
+  void shapeChanged();
+
 };
 
 class MyCircleItem : public CustomShape {

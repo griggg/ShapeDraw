@@ -30,6 +30,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         ishape.h
         ishapecreator.h
         shapetreemodel.h shapetreemodel.cpp
+        mytreeview.h mytreeview.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET untitled22 APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
