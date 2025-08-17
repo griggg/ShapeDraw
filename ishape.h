@@ -23,12 +23,17 @@
 #include <QSplitter>
 #include <fstream>
 
-void debug(std::string info) { qDebug() << info.c_str() << Qt::endl; }
-void debug2(QString info) { qDebug() << info << Qt::endl; }
+
+//TODO: перенести в отдельный файл
+inline void debug(std::string info) { qDebug() << info.c_str() << Qt::endl; }
+inline void debug2(QString info) { qDebug() << info << Qt::endl; }
+
+enum class ItemType;
 
 class IShape {
 public:
   virtual ~IShape() {}
+  virtual ItemType getType() const = 0;
   virtual void changeSize(QRectF) = 0;
   virtual bool isContains(QPointF p) = 0;
   virtual void changeColor(QColor color) = 0;

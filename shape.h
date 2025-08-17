@@ -6,7 +6,8 @@
 
 using namespace std;
 
-enum ItemType {
+
+enum class ItemType {
   TRNGL = 0,
   CRCL = 1,
   LINE = 2,
@@ -15,7 +16,8 @@ enum ItemType {
   GROUP = 5
 };
 
-std::string ItemTypeToStr(ItemType type) {
+// потом исправить зависимость от конкретных реализаций
+inline const std::string ItemTypeToStr(ItemType type) {
   if (type == ItemType::TRNGL)
     return "Triangle";
   if (type == ItemType::CRCL)
@@ -30,7 +32,7 @@ std::string ItemTypeToStr(ItemType type) {
     return "Group";
 }
 
-ItemType strToItemType(string type) {
+inline ItemType strToItemType(std::string type) {
   if (type == "Triangle")
     return ItemType::TRNGL;
   if (type == "Circle")
@@ -58,12 +60,16 @@ public:
   QColor color;
   QGraphicsView *view = nullptr;
 
+  const int childrens() const {
+    return shapes.count();
+  }
+
   ~GroupComposite() {
     for (int i = 0; i < shapes.count(); i++) {
       delete shapes[i];
     }
     shapes.clear();
-    debug("GroupComposite destructor");
+    // debug("GroupComposite destructor");
   }
 
   void changeColor(QColor color) override {
@@ -73,14 +79,14 @@ public:
     }
   }
 
-  QVector<IShape *> getShapesToUngroup() { return shapes; }
+  QVector<IShape *> getShapesToUngroup() const { return shapes; }
 
   void setShapeCreator(IShapeCreator *shapeCreator) {
     this->shapeCreator = shapeCreator;
   }
 
   virtual IShape *loadFromFile(ifstream &inFile) override {
-    debug("Group loadFromFile");
+    // debug("Group loadFromFile");
     if (shapeCreator == nullptr)
       throw runtime_error(
           "Error: GroupComposite::loadFromFile() shapeCreator = nullptr");
@@ -125,7 +131,7 @@ public:
     this->color = QColor(Qt::blue);
   }
 
-  ItemType getType() { return ItemType::GROUP; }
+  virtual ItemType getType() const override { return ItemType::GROUP; }
 
   void saveToFile(ofstream &outFile) override {
     outFile << ItemTypeToStr(getType()) << endl << (int)shapes.count() << endl;
@@ -156,19 +162,19 @@ public:
   }
 
   virtual void showSelected() override {
-    debug("qqqq");
+    // debug("qqqq");
     for (IShape *s : shapes)
       s->showSelected();
   }
 
   virtual void showUnSelected(QColor color) override {
-    debug("showUnSelected");
+    // debug("showUnSelected");
     for (IShape *s : shapes) {
       if (s == nullptr)
         throw runtime_error("GroupComposite::showUnSelected() s = nullptr");
       s->showUnSelected(color);
     }
-    debug("showUnSelected2");
+    // debug("showUnSelected2");
   }
 
   bool isFocused(QPointF scenePos) override {
@@ -219,11 +225,11 @@ public:
   }
 
   void setMovable(bool val) override {
-    debug("Group setMovable start");
+    // debug("Group setMovable start");
     this->movable = val;
     for (IShape *s : shapes)
       s->setMovable(val);
-    debug("Group setMovable success");
+    // debug("Group setMovable success");
   }
 
   void draw() override {
@@ -271,6 +277,9 @@ public:
     // this->color = QColor(Qt::blue);
   }
 
+  int getX() const {return this->x;};
+  int getY() const {return this->y;};
+
   virtual CustomShape *clone() { return nullptr; }
 
   void changeColor(QColor color) override {
@@ -286,7 +295,7 @@ public:
     outFile << this->x << " " << this->y << " " << this->size << "\n";
   }
 
-  virtual ItemType getType() = 0;
+  //virtual ItemType getType() const = 0;
 
   void removeFromScene() override {
     this->scene->removeItem(dynamic_cast<QGraphicsItem *>(this));
@@ -320,8 +329,8 @@ public:
 
   bool isFocused(QPointF scenePos) override {
     QPointF localPos = this->getMapFromScene(scenePos);
-    if (this->isContains(localPos))
-      debug("BBBBBBBBBBBBBBBBBBBBBBBBB");
+    // if (this->isContains(localPos))
+      // debug("BBBBBBBBBBBBBBBBBBBBBBBBB");
     return this->isContains(localPos);
   }
 
@@ -388,7 +397,7 @@ public:
   }
 
   void move(double difX, double difY) override {
-    debug("553");
+    // debug("553");
     QRectF itemRect = this->mapRectToScene(this->boundingRect());
     QRectF newItemRect = itemRect.translated(difX, difY);
     QRectF viewRect = view->mapToScene(view->viewport()->rect()).boundingRect();
@@ -399,7 +408,7 @@ public:
       this->y += difY;
     }
 
-    debug("228");
+    // debug("228");
   }
 
   void setMovable(bool val) override { this->movable = val; }
@@ -428,7 +437,7 @@ private:
 
 class MyCircleItem : public CustomShape {
 public:
-  ItemType getType() override { return ItemType::CRCL; }
+  virtual ItemType getType() const override { return ItemType::CRCL; }
   MyCircleItem(int posX, int posY, int size, QGraphicsView *view,
                QGraphicsItem *parent = nullptr)
       : CustomShape(posX, posY, size, view, parent) {
@@ -447,7 +456,7 @@ public:
   }
 
   IShape *loadFromFile(ifstream &inFile) override {
-    debug("111");
+    // debug("111");
     int r, g, b;
     inFile >> r >> g >> b;
     int x, y, size;
@@ -462,7 +471,7 @@ public:
 
 class MySquareItem : public CustomShape {
 public:
-  ItemType getType() override { return ItemType::SQUARE; }
+  ItemType getType() const override { return ItemType::SQUARE; }
   MySquareItem(int posX, int posY, int size, QGraphicsView *view,
                QGraphicsItem *parent = nullptr)
       : CustomShape(posX, posY, size, view, parent) {
@@ -495,7 +504,7 @@ public:
 
 class MyTriangleItem : public CustomShape {
 public:
-  ItemType getType() override { return ItemType::TRNGL; }
+  ItemType getType() const override { return ItemType::TRNGL; }
   MyTriangleItem(int posX, int posY, int size, QGraphicsView *view,
                  QGraphicsItem *parent = nullptr)
       : CustomShape(posX, posY, size, view, parent) {
@@ -531,7 +540,7 @@ public:
 // Класс для линий
 class MyLineItem : public CustomShape {
 public:
-  ItemType getType() override { return ItemType::LINE; }
+  ItemType getType() const override { return ItemType::LINE; }
 
   MyLineItem(int posX, int posY, int size, QGraphicsView *view,
              QGraphicsItem *parent = nullptr)
@@ -577,7 +586,7 @@ public:
 
 class MyTrapezoidItem : public CustomShape {
 public:
-  ItemType getType() override { return ItemType::TRPZD; }
+  ItemType getType() const override { return ItemType::TRPZD; }
 
   MyTrapezoidItem(int posX, int posY, int size, QGraphicsView *view,
                   QGraphicsItem *parent = nullptr)
@@ -667,8 +676,8 @@ public:
     IShape *shape = nullptr;
     if (scene == nullptr)
       throw runtime_error("ShapeCreator::createShape() scene = nullptr");
-    debug(type + "type");
-    qDebug() << type << " " << ": loadFromFile debug2" << Qt::endl;
+    // debug(type + "type");
+    // qDebug() << type << " " << ": loadFromFile debug2" << Qt::endl;
 
     if (type == "GROUP") {
       GroupComposite *group = new GroupComposite({}, scene);
@@ -679,7 +688,7 @@ public:
           ShapeCreator::shapeByStr(strToItemType(type), view, QPointF(0, 0), 0);
     }
 
-    debug("QQQ");
+    // debug("QQQ");
     shape->loadFromFile(*inFile);
 
     shape->draw();

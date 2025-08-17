@@ -21,11 +21,13 @@
 #include <fstream>
 #include <stack>
 #include <vector>
+#include <QTreeView>
 
 #include "./ui_mainwindow.h"
 #include "command.h"
 #include "shape.h"
 #include "storage.h"
+#include "shapetreemodel.h"
 
 class MyView : public QGraphicsView {
 public:
@@ -54,6 +56,10 @@ public:
       delete i;
       commandsHistory.pop();
     }
+  }
+
+  void setTreeModel(ShapeTreeModel *m_shapeTreeModel) {
+    this->m_shapeTreeModel = m_shapeTreeModel;
   }
 
 protected:
@@ -165,7 +171,7 @@ protected:
     }
 
     if (event->button() == Qt::LeftButton) {
-      debug("Select items");
+      // debug("Select items");
       bool controlPressed = event->modifiers() & Qt::ControlModifier;
 
       // Если Ctrl не зажат - снимаем выделение со всех
@@ -190,6 +196,10 @@ private:
   ItemType itemMode = ItemType::CRCL;
   double size = 50;
   stack<ICommand *> commandsHistory;
+  ShapeTreeModel *m_shapeTreeModel;
+
+
+
 
   // IFactoryShape *factory = nullptr; // фабрика для создания фигур
 
@@ -216,6 +226,7 @@ private:
       shape->changeSize(newItemRect);
       shape->changeColor(color);
       shape->draw();
+      m_shapeTreeModel->refresh();
     }
   }
 
@@ -258,9 +269,18 @@ public:
 
     storage = new MyStorage();
 
+
+    m_shapeTreeModel = new ShapeTreeModel(storage, this);
+    m_treeView = new QTreeView(this);
+    m_treeView->setModel(m_shapeTreeModel);
+
+
+
     this->view = new MyView(scene, storage, this);
     storage->setView(view);
-    QSplitter *mainSplitter = new QSplitter(Qt::Vertical, this);
+    view->setTreeModel(m_shapeTreeModel);
+
+    QSplitter *mainSplitter = new QSplitter(Qt::Horizontal, this);
 
     const std::vector<std::pair<QString, ItemType>> createButtonsInfo = {
         {"Создавать круги", ItemType::CRCL},
@@ -311,6 +331,7 @@ public:
     QWidget *empty0 = new QWidget();
     QHBoxLayout *layout2 = new QHBoxLayout(empty0);
 
+
     for (const auto &[text, type] : createButtonsInfo) {
       QPushButton *creatingCircles = new QPushButton(text, this);
       connect(creatingCircles, &QPushButton::clicked,
@@ -323,11 +344,12 @@ public:
     layout1->addWidget(clearShapes);
     layout1->addWidget(selectColor);
 
-    QWidget *empty = new QWidget(this);
 
+    QWidget *empty = new QWidget(this);
+     // empty->addWidget();
     mainSplitter->addWidget(view);
 
-    mainSplitter->addWidget(empty);
+    mainSplitter->addWidget(m_treeView);
 
     layout1->addWidget(mainSplitter);
     layout1->addWidget(empty0);
@@ -344,6 +366,8 @@ protected:
 private:
   QLabel *fileLabel;
   MyView *view;
+  ShapeTreeModel *m_shapeTreeModel;
+  QTreeView *m_treeView;
 };
 
 // Точка входа

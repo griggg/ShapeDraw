@@ -139,7 +139,7 @@ public:
   void unselectAll() {
     for (IShape *item : items) {
       if (item == nullptr) {
-        debug("item = nullptr");
+        // debug("item = nullptr");
         continue;
       }
       if (dynamic_cast<GroupComposite *>(item)) {

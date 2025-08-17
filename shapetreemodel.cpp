@@ -1,121 +1,160 @@
 #include "shapetreemodel.h"
 
-#include "ishape.h"
-
-ShapeTreeModel::ShapeTreeModel(QObject *parent) : QAbstractItemModel(parent) {}
-
-// Кол-во строк (детей) у parent
-int rowCount(const QModelIndex &parent = QModelIndex()) const override {
-  if (!parent.isValid())
-    return root.children.size();
-
-  const Item *parentItem = static_cast<const Item *>(parent.internalPointer());
-  return parentItem->children.size();
+ShapeTreeModel::ShapeTreeModel(MyStorage *storage, QObject *parent)
+    : QAbstractItemModel(parent), m_storage(storage)
+{
 }
 
-// Кол-во колонок (всегда 2)
-int columnCount(const QModelIndex &parent = QModelIndex()) const override {
-  Q_UNUSED(parent);
-  return 2;
+ShapeTreeModel::~ShapeTreeModel()
+{
 }
 
-// Данные для отображения
-QVariant data(const QModelIndex &index, int role) const override {
+void ShapeTreeModel::setStorage(MyStorage *storage)
+{
+  beginResetModel();
+  m_storage = storage;
+  endResetModel();
+}
+
+void ShapeTreeModel::refresh()
+{
+  beginResetModel();
+  endResetModel();
+}
+
+QVariant ShapeTreeModel::data(const QModelIndex &index, int role) const
+{
   if (!index.isValid())
     return QVariant();
 
-  const Item *item = static_cast<const Item *>(index.internalPointer());
+  if (role != Qt::DisplayRole && role != Qt::ToolTipRole)
+    return QVariant();
+
+  const IShape *item = getItem(index);
   if (!item)
     return QVariant();
 
-  if (role == Qt::DisplayRole) {
-    if (index.column() == 0)
-      return item->name;
-    else if (index.column() == 1)
-      return item->description;
-    else if (index.column() == 2)
-      return "";
-  } else if (role == Qt::ToolTipRole) {
-    // Возвращаем текст подсказки для ячейки
-    if (index.column() == 0)
-      return QString("Это имя: %1").arg(item->name);
-    else if (index.column() == 1)
-      return QString("Описание: %1").arg(item->description);
-    else if (index.column() == 2)
-      return QString("Дополнительная информация");
+  if (index.column() == 0) {
+    // Первая колонка - имя фигуры
+    return QString::fromStdString(ItemTypeToStr(item->getType()));
+  } else if (index.column() == 1) {
+    // Вторая колонка - дополнительная информация
+    const CustomShape* shape = dynamic_cast<const CustomShape*>(item);
+    if (shape == nullptr) return QString("");
+    else return QString("X: %1, Y: %2").arg(shape->getX()).arg(shape->getY());
   }
 
   return QVariant();
 }
 
-// Создаём индекс (строка, колонка, родитель)
-QModelIndex index(int row, int column,
-                  const QModelIndex &parent = QModelIndex()) const override {
-  if (!hasIndex(row, column, parent))
-    return QModelIndex();
+Qt::ItemFlags ShapeTreeModel::flags(const QModelIndex &index) const
+{
+  if (!index.isValid())
+    return Qt::NoItemFlags;
 
-  const Item *parentItem = nullptr;
-  if (!parent.isValid())
-    parentItem = &root;
-  else
-    parentItem = static_cast<const Item *>(parent.internalPointer());
-
-  if (row < 0 || row >= parentItem->children.size())
-    return QModelIndex();
-
-  const Item *childItem = &parentItem->children[row];
-  // Важно: в createIndex передаем void* с const_cast, чтобы хранить указатель
-  // на элемент
-  return createIndex(row, column, const_cast<Item *>(childItem));
+  return QAbstractItemModel::flags(index);
 }
 
-// Получаем родителя индекса
-QModelIndex parent(const QModelIndex &child) const override {
-  const Item *childItem = static_cast<const Item *>(child.internalPointer());
+QVariant ShapeTreeModel::headerData(int section, Qt::Orientation orientation,
+                                    int role) const
+{
+  if (orientation == Qt::Horizontal && role == Qt::DisplayRole) {
+    if (section == 0) return "Shape";
+    else if (section == 1) return "Position";
+  }
+  return QVariant();
+}
 
-  const Item *parentItem = findParent(&root, childItem);
-  if (!parentItem || parentItem == &root)
+QModelIndex ShapeTreeModel::index(int row, int column, const QModelIndex &parent) const
+{
+  if (!m_storage || !hasIndex(row, column, parent))
     return QModelIndex();
 
-  // И так далее...
+  const IShape *parentItem;
 
-  const Item *grandParent = findParent(&root, parentItem);
+  if (!parent.isValid()) {
+    // Корневой элемент - обращаемся к хранилищу
+    if (row >= m_storage->count())
+      return QModelIndex();
+    parentItem = m_storage->getItem(row);
+  } else {
+    // Дочерний элемент
+    parentItem = getItem(parent);
+    if (!parentItem)
+      return QModelIndex();
 
-  // Далее, чтобы создать индекс, нужно убрать const:
+           // Проверяем, является ли родитель группой
+    const GroupComposite *group = dynamic_cast<const GroupComposite*>(parentItem);
+    if (!group || row >= group->childrens())
+      return QModelIndex();
 
-  int row = 0;
-  const QList<Item> *siblings = nullptr;
+    parentItem = group->getShapesToUngroup()[row];
+  }
 
-  if (grandParent)
-    siblings = &grandParent->children;
-  else
-    siblings = &root.children;
+  return createIndex(row, column, const_cast<IShape*>(parentItem));
+}
 
-  for (int i = 0; i < siblings->size(); ++i) {
-    if (&(*siblings)[i] == parentItem) {
-      row = i;
-      break;
+QModelIndex ShapeTreeModel::parent(const QModelIndex &index) const
+{
+  if (!index.isValid())
+    return QModelIndex();
+
+  const IShape *childItem = getItem(index);
+  if (!childItem)
+    return QModelIndex();
+
+         // Ищем родителя в хранилище
+  for (int i = 0; i < m_storage->count(); ++i) {
+    const IShape *item = m_storage->getItem(i);
+    if (!item) continue;
+
+           // Если это группа и она содержит наш элемент
+    const GroupComposite *group = dynamic_cast<const GroupComposite*>(item);
+    if (group) {
+      const QVector<IShape*> children = group->getShapesToUngroup();
+      for (int j = 0; j < children.size(); ++j) {
+        if (children[j] == childItem) {
+          return createIndex(i, 0, const_cast<IShape*>(item));
+        }
+      }
     }
   }
 
-  // const_cast для передачи указателя в createIndex:
-  return createIndex(row, 0, const_cast<Item *>(parentItem));
+  return QModelIndex();
 }
 
-// Заголовки колонок
-QVariant headerData(int section, Qt::Orientation orientation,
-}
+int ShapeTreeModel::rowCount(const QModelIndex &parent) const
+{
+  if (!m_storage)
+    return 0;
 
-const ShapeTreeModel::IShape *findParent(const IShape *current,
-                                         const IShape *target) const {
-  for (const Item &child : current->children) {
-    if (&child == target)
-      return current;
-    const Item *res = findParent(&child, target);
-    if (res)
-      return res;
+  if (!parent.isValid()) {
+    // Корневой уровень - количество элементов в хранилище
+    return m_storage->count();
+  } else {
+    // Для групп - количество дочерних элементов
+    const IShape *parentItem = getItem(parent);
+    if (!parentItem)
+      return 0;
+
+    const GroupComposite *group = dynamic_cast<const GroupComposite*>(parentItem);
+    if (group)
+      return group->childrens();
+    else
+      return 0; // Обычные фигуры не имеют детей
   }
-  return nullptr;
 }
+
+int ShapeTreeModel::columnCount(const QModelIndex &parent) const
+{
+  Q_UNUSED(parent);
+  return 2; // Две колонки: имя и позиция
 }
-;
+
+const IShape *ShapeTreeModel::getItem(const QModelIndex &index) const
+{
+  if (!index.isValid())
+    return nullptr;
+
+  return static_cast<const IShape*>(index.internalPointer());
+}
