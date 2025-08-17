@@ -1,8 +1,9 @@
 #ifndef COMMAND_H
 #define COMMAND_H
 
-#include "IShape.h"
-#include "ICommand.h"
+#include "ishape.h"
+#include "icommand.h"
+
 
 
 class MoveCommand: public ICommand {
@@ -19,7 +20,11 @@ public: MoveCommand(int dx, int dy) {
         shape -> move(dx, dy);
     }
     void unexecute() {
+        if(shape == nullptr) {
+            debug("иди нахуй");
+        }
         shape -> move(-dx, -dy);
+
     }
     MoveCommand * clone() {
         return new MoveCommand(dx, dy);

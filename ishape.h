@@ -43,6 +43,13 @@
 
 #include <fstream>
 
+void debug(std::string info) {
+    qDebug() << info.c_str() << Qt::endl;
+}
+void debug2(QString info) {
+    qDebug() << info << Qt::endl;
+}
+
 class IShape {
 public: virtual~IShape() {}
     virtual void changeSize(QRectF) = 0;

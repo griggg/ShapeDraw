@@ -1,7 +1,7 @@
 #ifndef ICOMMAND_H
 #define ICOMMAND_H
 
-#include "IShape.h"
+#include "ishape.h"
 
 class ICommand {
 public: virtual void execute(IShape * shape) = 0;

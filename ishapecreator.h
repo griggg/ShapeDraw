@@ -1,7 +1,7 @@
 #ifndef ISHAPECREATOR_H
 #define ISHAPECREATOR_H
 
-#include "IShape.h"
+#include "ishape.h"
 
 class IShapeCreator {
 public: virtual void setType(std::string type) = 0;

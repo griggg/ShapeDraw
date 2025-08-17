@@ -1,22 +1,27 @@
 #ifndef SHAPE_H
 #define SHAPE_H
 
-#include "IShape.h"
-#include "IShapeCreator.h"
+#include "ishape.h"
+#include "ishapecreator.h"
 
 using namespace std;
 
-void debug(std::string info) {
-    qDebug() << info.c_str() << Qt::endl;
-}
-void debug2(QString info) {
-    qDebug() << info << Qt::endl;
-}
+
 
 
 enum ItemType {
-    TRNGL = 0, CRCL = 1, LINE = 2, TRPZD = 3, SQUARE = 4
+    TRNGL = 0, CRCL = 1, LINE = 2, TRPZD = 3, SQUARE = 4,
+    GROUP=5
 };
+
+std::string ItemTypeToStr(ItemType type) {
+    if (type == ItemType::TRNGL) return "Triangle";
+    if (type == ItemType::CRCL) return  "Circle";
+    if (type == ItemType::LINE) return "Line";
+    if (type == ItemType::TRPZD) return "Trapezoid";
+    if (type == ItemType::SQUARE) return "Square";
+    if (type == ItemType::GROUP) return "Group";
+}
 
 ItemType strToItemType(string type) {
     if (type == "Triangle") return ItemType::TRNGL;
@@ -24,6 +29,7 @@ ItemType strToItemType(string type) {
     if (type == "Line") return ItemType::LINE;
     if (type == "Trapezoid") return ItemType::TRPZD;
     if (type == "Square") return ItemType::SQUARE;
+    if (type == "Group") return ItemType::GROUP;
 
 }
 
@@ -106,8 +112,12 @@ public: QGraphicsScene * scene;
         this -> color = QColor(Qt::blue);
     }
 
+    ItemType getType() {
+        return ItemType::GROUP;
+    }
+
     void saveToFile(ofstream & outFile) override {
-        outFile << "GROUP" << endl << (int) shapes.count() << endl;
+        outFile << ItemTypeToStr(getType()) << endl << (int) shapes.count() << endl;
         for (IShape * s: shapes)
             s -> saveToFile(outFile);
     }
@@ -261,16 +271,14 @@ public:
     }
 
     void saveToFile(ofstream & outFile) override {
-        outFile << this -> getType() << "\n";
+        outFile <<  ItemTypeToStr(getType()) << "\n";
         outFile << this -> color.toRgb().red() << " " <<
             this -> color.toRgb().green() << " " <<
             this -> color.toRgb().blue() << "\n";
         outFile << this -> x << " " << this -> y << " " << this -> size << "\n";
     }
 
-    virtual string getType() {
-        return "";
-    }
+    virtual ItemType getType() = 0;
 
     void removeFromScene() override{
         this -> scene -> removeItem(dynamic_cast < QGraphicsItem * > (this));
@@ -381,9 +389,9 @@ public:
     }
 
     void move(double difX, double difY) override {
+        debug("553");
         QRectF itemRect = this -> mapRectToScene(this -> boundingRect());
         QRectF newItemRect = itemRect.translated(difX, difY);
-
         QRectF viewRect =
             view -> mapToScene(view -> viewport() -> rect()).boundingRect();
 
@@ -392,6 +400,8 @@ public:
             this -> x += difX;
             this -> y += difY;
         }
+
+        debug("228");
     }
 
     void setMovable(bool val) override {
@@ -424,8 +434,8 @@ private: bool movable;
 
 class MyCircleItem: public CustomShape {
 public:
-    string getType() override {
-        return "Circle";
+    ItemType getType() override {
+        return ItemType::CRCL;
     }
     MyCircleItem(int posX, int posY, int size, QGraphicsView* view,
                  QGraphicsItem * parent = nullptr): CustomShape(posX, posY, size, view, parent) {
@@ -461,8 +471,8 @@ public:
 
 class MySquareItem: public CustomShape {
 public:
-    string getType() override {
-        return "Square";
+    ItemType getType() override {
+        return ItemType::SQUARE;
     }
     MySquareItem(int posX, int posY, int size,
                  QGraphicsView* view, QGraphicsItem * parent = nullptr): CustomShape(posX, posY, size, view, parent) {
@@ -496,8 +506,8 @@ public:
 
 class MyTriangleItem: public CustomShape {
 public:
-    string getType() override {
-        return "Triangle";
+    ItemType getType() override {
+        return ItemType::TRNGL;
     }
     MyTriangleItem(int posX, int posY, int size, QGraphicsView* view,
                    QGraphicsItem * parent = nullptr): CustomShape(posX, posY, size, view, parent) {
@@ -533,8 +543,8 @@ public:
 
 // Класс для линий
 class MyLineItem: public CustomShape {
-public: string getType() override {
-        return "Line";
+public: ItemType getType() override {
+        return ItemType::LINE;
     }
 
     MyLineItem(int posX, int posY, int size, QGraphicsView* view,
@@ -585,8 +595,8 @@ public: string getType() override {
 
 class MyTrapezoidItem: public CustomShape {
 public:
-    string getType() override {
-        return "Trapezoid";
+    ItemType getType() override {
+        return ItemType::TRPZD;
     }
 
     MyTrapezoidItem(int posX, int posY, int size, QGraphicsView* view,

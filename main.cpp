@@ -302,43 +302,18 @@ public:
         storage -> setView(view);
         QSplitter * mainSplitter = new QSplitter(Qt::Vertical, this);
 
-        QPushButton * creatingCircles = new QPushButton("Создавать круги", this);
-        connect(creatingCircles, & QPushButton::clicked,
-                [this]() {
-                    this -> view -> setItemMode(ItemType::CRCL);
-                });
-
-        QPushButton * creatingRects =
-            new QPushButton("Создавать квадраты", this);
-        connect(creatingRects, & QPushButton::clicked,
-                [this]() {
-                    this -> view -> setItemMode(ItemType::SQUARE);
-                });
+        const std::vector<std::pair<QString, ItemType>> createButtonsInfo = {
+            { "Создавать круги", ItemType::CRCL },
+            { "Создавать квадраты", ItemType::SQUARE },
+            { "Создавать треугольники", ItemType::TRNGL },
+            { "Создавать линии", ItemType::LINE },
+            { "Создавать Трапеции", ItemType::TRPZD }
+        };
 
         QPushButton * selectColor = new QPushButton("Выбрать цвет", this);
         connect(selectColor, & QPushButton::clicked,
                 [this]() {
                     this -> view -> color = QColorDialog::getColor();
-                });
-
-        QPushButton * creatingTriangles =
-            new QPushButton("Создавать треугольники", this);
-        connect(creatingTriangles, & QPushButton::clicked,
-                [this]() {
-                    this -> view -> setItemMode(ItemType::TRNGL);
-                });
-
-        QPushButton * creatingLines = new QPushButton("Создавать линии", this);
-        connect(creatingLines, & QPushButton::clicked,
-                [this]() {
-                    this -> view -> setItemMode(ItemType::LINE);
-                });
-
-        QPushButton * creatingTrapezoids =
-            new QPushButton("Создавать Трапеции", this);
-        connect(creatingTrapezoids, & QPushButton::clicked,
-                [this]() {
-                    this -> view -> setItemMode(ItemType::TRPZD);
                 });
 
         // fileLabel = new QLabel("Текущий файл: Нет", this);
@@ -386,20 +361,21 @@ public:
         QWidget * empty0 = new QWidget();
         QHBoxLayout * layout2 = new QHBoxLayout(empty0);
 
-        layout2 -> addWidget(creatingCircles);
-        layout2 -> addWidget(creatingRects);
 
-        layout2 -> addWidget(creatingTriangles);
-        layout2 -> addWidget(creatingLines);
-        layout2 -> addWidget(creatingTrapezoids);
+        for (const auto &[text, type]: createButtonsInfo) {
+            QPushButton * creatingCircles = new QPushButton(text, this);
+            connect(creatingCircles, & QPushButton::clicked,
+                    [this, type] {
+                        this -> view -> setItemMode(type);
+                    });
+            layout2 -> addWidget(creatingCircles);
+        }
 
-        // layout1->addWidget(fileLabel);
-        // fileLabel->setAlignment(Qt::AlignCenter);
+
         layout1 -> addWidget(loadFromFile);
         layout1 -> addWidget(saveToFile);
         layout1 -> addWidget(clearShapes);
         layout1 -> addWidget(selectColor);
-        // layout1->addWidget(changeFile);
 
         QWidget * empty = new QWidget(this);
 
@@ -412,10 +388,8 @@ public:
 
         empty0 -> setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-        // view->setMinimumSize(100, 100);
-
         setCentralWidget(centralWidget);
-        setWindowTitle("ООП Лаба 6");
+        setWindowTitle("Shape");
         resize(1000, 1000);
         // storage->load();
     }
