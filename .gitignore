@@ -1,4 +1,4 @@
-CMakeList*
+!CMakeList*
 build/*
 .qtcreator/
 html/
