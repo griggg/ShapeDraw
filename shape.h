@@ -324,10 +324,14 @@ public:
     this->setPos(x, y);
   }
 
-  virtual void showSelected() override { this->setPen(QPen(Qt::red)); }
+  virtual void showSelected() override {
+    this->setPen(QPen(Qt::red, 3));
+    update();
+  }
 
   virtual void showUnSelected(QColor color) override {
     this->setPen(QPen(color));
+    update();
   }
 
   bool isFocused(QPointF scenePos) override {

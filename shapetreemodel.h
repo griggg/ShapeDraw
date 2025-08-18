@@ -35,10 +35,11 @@ public:
 
 private:
   MyStorage *m_storage;
-  const IShape *getItem(const QModelIndex &index) const;
+  IShape *getItem(const QModelIndex &index) const;
 
 public slots:
   void refresh();
+  void shapeSelect(QModelIndex index, bool isSelect);
 };
 
 #endif // SHAPETREEMODEL_H

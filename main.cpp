@@ -280,7 +280,7 @@ public:
     m_shapeTreeModel = new ShapeTreeModel(storage, this);
     m_treeView = new MyTreeView(this);
     m_treeView->setModel(m_shapeTreeModel);
-
+    connect(m_treeView, &MyTreeView::shapeSelected, m_shapeTreeModel, &ShapeTreeModel::shapeSelect);
 
 
     this->view = new MyView(scene, storage, this);

@@ -22,6 +22,29 @@ void ShapeTreeModel::refresh()
   endResetModel();
 }
 
+void ShapeTreeModel::shapeSelect(QModelIndex index, bool isSelect) {
+  IShape* shape = getItem(index);
+  if (!shape) return;
+
+  shape->setMovable(isSelect); // Обновить состояние movable
+  if (isSelect) {
+    shape->showSelected();
+  } else {
+    shape->showUnSelected(shape->color);
+  }
+
+         // Убедиться, что другие фигуры не выделены
+  if (1) {
+    for (int i = 0; i < m_storage->count(); ++i) {
+      IShape* item = m_storage->getItem(i);
+      if (item && item != shape && item->ismovable()) {
+        item->setMovable(false);
+        item->showUnSelected(item->color);
+      }
+    }
+  }
+}
+
 QVariant ShapeTreeModel::data(const QModelIndex &index, int role) const
 {
   if (!index.isValid())
@@ -70,7 +93,7 @@ QModelIndex ShapeTreeModel::index(int row, int column, const QModelIndex &parent
   if (!m_storage || !hasIndex(row, column, parent))
     return QModelIndex();
 
-  const IShape *parentItem;
+  IShape *parentItem;
 
   if (!parent.isValid()) {
     // Корневой элемент - обращаемся к хранилищу
@@ -91,7 +114,7 @@ QModelIndex ShapeTreeModel::index(int row, int column, const QModelIndex &parent
     parentItem = group->getShapesToUngroup()[row];
   }
 
-  return createIndex(row, column, const_cast<IShape*>(parentItem));
+  return createIndex(row, column, parentItem);
 }
 
 QModelIndex ShapeTreeModel::parent(const QModelIndex &index) const
@@ -153,10 +176,10 @@ int ShapeTreeModel::columnCount(const QModelIndex &parent) const
 
 
 
-const IShape *ShapeTreeModel::getItem(const QModelIndex &index) const
+IShape *ShapeTreeModel::getItem(const QModelIndex &index) const
 {
   if (!index.isValid())
     return nullptr;
 
-  return static_cast<const IShape*>(index.internalPointer());
+  return static_cast<IShape*>(index.internalPointer());
 }
