@@ -16,6 +16,25 @@ void ShapeTreeModel::setStorage(MyStorage *storage)
   endResetModel();
 }
 
+
+
+
+void ShapeTreeModel::updateShape(IShape* shape) {
+  QModelIndex index = getIndexByShape(shape);
+  if (index.isValid()) {
+    // Указываем, что изменились обе колонки (0 и 1)
+    QModelIndex topLeft = createIndex(index.row(), 0, index.internalPointer());
+    QModelIndex bottomRight = createIndex(index.row(), 1, index.internalPointer());
+    emit dataChanged(topLeft, bottomRight);
+  }
+}
+
+void ShapeTreeModel::addShape(IShape* shape) {
+  int row = m_storage->count() - 1;
+  beginInsertRows(QModelIndex(), row, row);
+  endInsertRows();
+}
+
 void ShapeTreeModel::refresh()
 {
   beginResetModel();
@@ -42,6 +61,20 @@ void ShapeTreeModel::shapeSelect(QModelIndex index, bool isSelect) {
         item->showUnSelected(item->color);
       }
     }
+  }
+}
+
+void ShapeTreeModel::slotShapeAdded(IShape *shape)
+{
+  QModelIndex parentIndex; // Для корневых элементов родитель - invalid
+
+  // Если фигура входит в группу, нужно найти родительский индекс группы
+  // Здесь простейший случай - все фигуры корневые
+
+  int row = m_storage->getItems().indexOf(shape);
+  if (row != -1) {
+    beginInsertRows(parentIndex, row, row);
+    endInsertRows();
   }
 }
 
@@ -182,4 +215,52 @@ IShape *ShapeTreeModel::getItem(const QModelIndex &index) const
     return nullptr;
 
   return static_cast<IShape*>(index.internalPointer());
+}
+
+QModelIndex ShapeTreeModel::getIndexByShape(IShape* targetShape, const QModelIndex& parent) const
+{
+  int rows = rowCount(parent);
+  int cols = columnCount(parent);
+
+  for (int row = 0; row < rows; ++row) {
+    for (int col = 0; col < cols; ++col) {
+      QModelIndex index = this->index(row, col, parent);
+      if (!index.isValid())
+        continue;
+
+      IShape* shape = getItem(index);
+      if (shape == targetShape)
+        return index;
+
+             // Рекурсивно ищем в дочерних элементах
+      QModelIndex found = getIndexByShape(targetShape, index);
+      if (found.isValid())
+        return found;
+    }
+  }
+
+  return QModelIndex(); // Не найдено
+}
+
+bool ShapeTreeModel::setData(const QModelIndex &index, const QVariant &value, int role) {
+  if (!index.isValid() || role != Qt::EditRole)
+    return false;
+
+  IShape *shape = getItem(index);
+  if (!shape)
+    return false;
+
+         // Пример: если меняется имя фигуры (первая колонка)
+  if (index.column() == 0) {
+    // Здесь можно обновить данные фигуры, если нужно
+    // Например: shape->setName(value.toString());
+  }
+  // Если меняется позиция (вторая колонка)
+  else if (index.column() == 1) {
+    // Можно обновить координаты
+  }
+
+         // Уведомляем view об изменении данных
+  emit dataChanged(index, index, {role});
+  return true;
 }

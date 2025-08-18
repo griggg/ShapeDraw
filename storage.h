@@ -6,7 +6,8 @@
 
 #include "shape.h"
 
-class MyStorage {
+class MyStorage : public QObject {
+  Q_OBJECT
 private:
   QVector<IShape *> items;
 
@@ -55,6 +56,12 @@ public:
 
   // Получить выбранные элементы
   QVector<IShape *> getSelectedItems();
+
+  const QVector<IShape *> getItems();
+
+signals:
+  void shapeAdded(IShape*);
+
 };
 
 inline void MyStorage::setShapeCreator(IShapeCreator *shapeCreator) {
@@ -172,8 +179,9 @@ inline void MyStorage::clearSelected() {
 inline void MyStorage::addItem(IShape *item) {
   items.append(item);
   if (dynamic_cast<CustomShape*>(item))
-    emit dynamic_cast<CustomShape*>(item)->shapeChanged();
+    emit dynamic_cast<CustomShape*>(item)->shapeChanged(item);
   // save();
+  emit this->shapeAdded(item);
 }
 
 inline void MyStorage::unselectAll() {
@@ -207,6 +215,11 @@ inline QVector<IShape *> MyStorage::getSelectedItems() {
     }
   }
   return selectedItems;
+}
+
+inline const QVector<IShape *> MyStorage::getItems()
+{
+  return this->items;
 }
 
 #endif // STORAGE_H

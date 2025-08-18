@@ -230,7 +230,7 @@ private:
       // m_shapeTreeModel->refresh();
       CustomShape* customShape = dynamic_cast<CustomShape*>(shape);
       if (customShape) {
-        connect(customShape, &CustomShape::shapeChanged, m_shapeTreeModel, &ShapeTreeModel::refresh);
+        connect(customShape, &CustomShape::shapeChanged, m_shapeTreeModel, &ShapeTreeModel::updateShape);
 
       }
       storage->addItem(shape);
@@ -286,6 +286,8 @@ public:
     this->view = new MyView(scene, storage, this);
     storage->setView(view);
     view->setTreeModel(m_shapeTreeModel);
+
+    connect(storage, &MyStorage::shapeAdded, m_shapeTreeModel, &ShapeTreeModel::slotShapeAdded);
 
     QSplitter *mainSplitter = new QSplitter(Qt::Horizontal, this);
 

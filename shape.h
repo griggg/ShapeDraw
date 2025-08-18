@@ -60,6 +60,10 @@ public:
   QColor color;
   QGraphicsView *view = nullptr;
 
+  const QVector<IShape*> getShapes() {
+    return shapes;
+  }
+
   const int childrens() const {
     return shapes.count();
   }
@@ -383,7 +387,7 @@ public:
 
     prepareGeometryChange();
     update();
-    shapeChanged();
+    emit shapeChanged(this);
   }
 
   bool isShapeRectInView() override {
@@ -414,7 +418,7 @@ public:
       this->setPos(this->pos() + QPointF(difX, difY));
       this->x += difX;
       this->y += difY;
-      emit shapeChanged();
+      emit shapeChanged(this);
     }
 
     // debug("228");
@@ -444,7 +448,7 @@ private:
   bool movable;
 
 signals:
-  void shapeChanged();
+  void shapeChanged(IShape*);
 
 };
 

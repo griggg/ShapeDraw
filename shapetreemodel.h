@@ -33,13 +33,18 @@ public:
   void setStorage(MyStorage *storage);
 
 
+  void updateShape(IShape *shape);
+  void addShape(IShape *shape);
 private:
   MyStorage *m_storage;
   IShape *getItem(const QModelIndex &index) const;
 
+  QModelIndex getIndexByShape(IShape* targetShape, const QModelIndex& parent=QModelIndex()) const;
+  bool setData(const QModelIndex &index, const QVariant &value, int role) override;
 public slots:
   void refresh();
   void shapeSelect(QModelIndex index, bool isSelect);
+  void slotShapeAdded(IShape* shape);
 };
 
 #endif // SHAPETREEMODEL_H
